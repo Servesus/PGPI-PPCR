@@ -1,0 +1,12 @@
+2019-11-25T14:31:33+00:00 CRITICAL syntax error, unexpected 'name’' (T_STRING), expecting ')' in /var/www/html/wp-content/themes/catch-foodmania/functions.php on line 706
+
+2019-11-25T14:31:43+00:00 CRITICAL syntax error, unexpected 'name’' (T_STRING), expecting ')' in /var/www/html/wp-content/themes/catch-foodmania/functions.php on line 706
+
+2019-11-25T15:56:56+00:00 CRITICAL syntax error, unexpected '<', expecting end of file in /var/www/html/wp-content/themes/catch-foodmania/functions.php on line 702
+
+2019-11-25T15:57:22+00:00 CRITICAL syntax error, unexpected '<', expecting end of file in /var/www/html/wp-content/themes/catch-foodmania/functions.php on line 702
+
+2019-11-25T15:57:37+00:00 CRITICAL syntax error, unexpected '<', expecting end of file in /var/www/html/wp-content/themes/catch-foodmania/functions.php on line 702
+
+2019-11-25T20:06:46+00:00 CRITICAL syntax error, unexpected end of file en /var/www/html/wp-content/themes/catch-foodmania/functions.php en la línea 727
+

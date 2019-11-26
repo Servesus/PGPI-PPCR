@@ -1,0 +1,358 @@
+# Translation of Plugins - WP Mail Logging - Stable (latest release) in Spanish (Spain)
+# This file is distributed under the same license as the Plugins - WP Mail Logging - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-08-06 17:58:18+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: es\n"
+"Project-Id-Version: Plugins - WP Mail Logging - Stable (latest release)\n"
+
+#: src/WPML_PrivacyController.php:137
+msgid "A mail with the id %d was unable to be removed at this time."
+msgstr "No ha sido posible borrar el correo electrónico con id %d en este momento."
+
+#: src/WPML_PrivacyController.php:101
+msgid "Mails"
+msgstr "Correos electrónicos"
+
+#: src/WPML_PrivacyController.php:43
+msgid "When you use this site several actions (e.g. commenting) trigger the dispatch of emails. They contain information about you associated with your email address. Which data are part of these emails depends on the action performed. These emails are stored and accessible to the site management as log."
+msgstr "Cuando utilizas algunas acciones de este sitio (por ejemplo, los comentarios) se desencadena el envío de correos electrónicos. Estos contienen información sobre ti asociada a tu dirección de correo electrónico. Los datos que forman parte de estos correos electrónicos dependen de la acción realizada. Estos correos electrónicos se almacenan y son accesibles como registros para la gestión del sitio."
+
+#. Author URI of the plugin
+msgid "http://no3x.de/"
+msgstr "http://no3x.de/"
+
+#. Author of the plugin
+msgid "Christian Z&ouml;ller"
+msgstr "Christian Z&ouml;ller"
+
+#. Description of the plugin
+msgid "Logs each email sent by WordPress."
+msgstr "Registra cada correo electrónico enviado por WordPress."
+
+#. Plugin URI of the plugin
+msgid "http://wordpress.org/extend/plugins/wp-mail-logging/"
+msgstr "https://es.wordpress.org/extend/plugins/wp-mail-logging/"
+
+#. Plugin Name of the plugin
+#: src/WPML_PrivacyController.php:54 src/WPML_PrivacyController.php:62
+msgid "WP Mail Logging"
+msgstr "WP Mail Logging"
+
+#: wp-mail-logging.php:50
+msgid "Your server's PHP version: "
+msgstr "Versión de PHP de tu servidor:"
+
+#: wp-mail-logging.php:49
+msgid "Minimal version of PHP required: "
+msgstr "Versión de PHP mínima obligatoria:"
+
+#: wp-mail-logging.php:48
+msgid "Error: plugin \"WP Mail Logging\" requires a newer version of PHP to be running."
+msgstr "Error: «WP Mail Logging\"» necesita una versión de PHP más actualizada para funcionar."
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:193
+msgid "Delete mails older than days..."
+msgstr "Borrar los correos electrónicos de más de estos días..."
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:181
+msgid "Cleanup by Time"
+msgstr "Borrar por antigüedad"
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:171
+msgid "Cleanup when the stored mails exceed..."
+msgstr "Borrar cuando la cantidad de correos electrónicos exceda de..."
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:170
+#: src/inc/redux/WPML_Redux_Framework_config.php:192
+msgid "When should mails are deleted?"
+msgstr "¿Cuándo deberían borrarse los correos electrónicos?"
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:169
+msgid "Amount"
+msgstr "Cantidad"
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:160
+#: src/inc/redux/WPML_Redux_Framework_config.php:182
+msgid "Setup a automated cleanup routine!"
+msgstr "¡Configura una rutina de limpieza automatizada!"
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:159
+msgid "Cleanup by Amount"
+msgstr "Borrar por cantidad"
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:153
+msgid "Save space by deleting logs regularly."
+msgstr "Libera espacio borrando los registros regularmente."
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:152
+msgid "Log Rotation"
+msgstr "Rotación de registros"
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:140
+msgid "Display host column in list."
+msgstr "Mostrar la columna del servidor en una lista."
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:139
+msgid "Display Host"
+msgstr "Mostrar servidor"
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:134
+msgid "Select your preferred display format."
+msgstr "Elige el formato de visualización que prefieras."
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:133
+msgid "Default Format for Message"
+msgstr "Formato por defecto para el mensaje"
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:105
+#: src/inc/redux/WPML_Redux_Framework_config.php:122
+#: src/inc/redux/WPML_Redux_Framework_config.php:147
+#: src/inc/redux/WPML_Redux_Framework_config.php:163
+#: src/inc/redux/WPML_Redux_Framework_config.php:185
+msgid "Disabled"
+msgstr "Desactivado"
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:104
+#: src/inc/redux/WPML_Redux_Framework_config.php:121
+#: src/inc/redux/WPML_Redux_Framework_config.php:146
+#: src/inc/redux/WPML_Redux_Framework_config.php:162
+#: src/inc/redux/WPML_Redux_Framework_config.php:184
+msgid "Enabled"
+msgstr "Activado"
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:119
+msgid "Use format from WordPress settings (%s)"
+msgstr "Utiliza el formato de los ajustes de WordPress (%s)"
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:118
+msgid "WordPress Date Time Format"
+msgstr "Formato de fecha y hora de WordPress"
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:113
+msgid "Select the minimum role."
+msgstr "Elige el perfil mínimo."
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:112
+msgid "Can See Submission data"
+msgstr "Puede ver los datos enviados"
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:102
+msgid "Delete all data on deactivation? (emails and settings)?"
+msgstr "¿Borrar todos los datos al desactivar el plugin? (correos electrónicos y ajustes)"
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:101
+msgid "Cleanup"
+msgstr "Borrado"
+
+#: src/inc/redux/WPML_Redux_Framework_config.php:92
+msgid "General Settings"
+msgstr "Ajustes generales"
+
+#: src/inc/class-wp-list-table.php:720
+msgid "Select All"
+msgstr "Seleccionar todos"
+
+#: src/inc/class-wp-list-table.php:584
+msgid "Go to the last page"
+msgstr "Ir a la última página"
+
+#: src/inc/class-wp-list-table.php:577
+msgid "Go to the next page"
+msgstr "Ir a la página siguiente"
+
+#: src/inc/class-wp-list-table.php:573
+msgctxt "paging"
+msgid "%1$s of %2$s"
+msgstr "%1$s de %2$s"
+
+#: src/inc/class-wp-list-table.php:567
+msgid "Current page"
+msgstr "Página actual"
+
+#: src/inc/class-wp-list-table.php:558
+msgid "Go to the previous page"
+msgstr "Ir a la página anterior"
+
+#: src/inc/class-wp-list-table.php:551
+msgid "Go to the first page"
+msgstr "Ir a la primera página"
+
+#: src/inc/class-wp-list-table.php:533 src/inc/class-wp-list-table.php:948
+msgid "1 item"
+msgid_plural "%s items"
+msgstr[0] "1 elemento"
+msgstr[1] "%s elementos"
+
+#: src/inc/class-wp-list-table.php:465
+msgid "%s pending"
+msgstr "%s pendientes"
+
+#: src/inc/class-wp-list-table.php:439
+msgid "Excerpt View"
+msgstr "Vista de extracto"
+
+#: src/inc/class-wp-list-table.php:438
+msgid "List View"
+msgstr "Vista de lista"
+
+#. translators: 1: month name, 2: 4-digit year
+#: src/inc/class-wp-list-table.php:422
+msgid "%1$s %2$d"
+msgstr "%1$s %2$d"
+
+#: src/inc/class-wp-list-table.php:409
+msgid "Show all dates"
+msgstr "Mostrar todas las fechas"
+
+#: src/inc/class-wp-list-table.php:325
+msgid "Apply"
+msgstr "Aplicar"
+
+#: src/inc/class-wp-list-table.php:315
+msgid "Bulk Actions"
+msgstr "Acciones en lote"
+
+#: src/inc/class-wp-list-table.php:191
+msgid "No items found."
+msgstr "No se han encontrado elementos."
+
+#: src/WPML_OptionsManager.php:575
+msgid "Anyone"
+msgstr "Cualquiera"
+
+#: src/WPML_OptionsManager.php:573
+msgid "Subscriber"
+msgstr "Suscriptor"
+
+#: src/WPML_OptionsManager.php:571
+msgid "Contributor"
+msgstr "Colaborador"
+
+#: src/WPML_OptionsManager.php:569
+msgid "Author"
+msgstr "Autor"
+
+#: src/WPML_OptionsManager.php:567
+msgid "Editor"
+msgstr "Editor"
+
+#: src/WPML_OptionsManager.php:565
+msgid "Administrator"
+msgstr "Administrador"
+
+#: src/WPML_OptionsManager.php:562
+msgid "false"
+msgstr "false"
+
+#: src/WPML_OptionsManager.php:560
+msgid "true"
+msgstr "true"
+
+#: src/WPML_OptionsManager.php:535
+msgid "Search"
+msgstr "Buscar"
+
+#: src/WPML_OptionsManager.php:521
+msgid "Close"
+msgstr "Cerrar"
+
+#: src/WPML_OptionsManager.php:478
+msgid "Log"
+msgstr "Registro"
+
+#: src/WPML_OptionsManager.php:469
+msgid "You do not have sufficient permissions to access this page."
+msgstr "No tienes suficientes permisos para acceder a esta página."
+
+#: src/WPML_OptionsManager.php:447
+msgid "Entries per page"
+msgstr "Entradas por página"
+
+#: src/WPML_OptionsManager.php:440
+msgid "Plugin author's blog"
+msgstr "Blog del autor del plugin"
+
+#: src/WPML_OptionsManager.php:439
+msgid "Plugin Homepage/support"
+msgstr "Página de inicio del plugin/página de soporte"
+
+#: src/WPML_OptionsManager.php:438
+msgid "More information"
+msgstr "Más información"
+
+#: src/WPML_OptionsManager.php:429
+msgid "About Plugin"
+msgstr "Acerca de este plugin"
+
+#: src/WPML_OptionsManager.php:340 src/WPML_OptionsManager.php:341
+#: src/WPML_OptionsManager.php:352
+msgid "About"
+msgstr "Acerca de"
+
+#: src/WPML_OptionsManager.php:328 src/WPML_OptionsManager.php:329
+msgid "WP Mail Log"
+msgstr "WP Mail Log"
+
+#: src/WPML_LifeCycle.php:205
+msgid "Settings"
+msgstr "Ajustes"
+
+#: src/Renderer/WPML_MailRenderer.php:65
+msgid "Fallback to raw format because html is not convertible to json."
+msgstr "HTML no es convertible a json: se devuelve como formato sin procesar."
+
+#: src/Renderer/Column/AttachmentsColumn.php:49
+#: src/Renderer/Column/AttachmentsColumn.php:80
+msgid "Attachment %s is not present"
+msgstr "El adjunto %s no está presente"
+
+#: src/Renderer/WPML_ColumnManager.php:33
+msgid "Host"
+msgstr "Servidor"
+
+#: src/Renderer/WPML_ColumnManager.php:40
+msgid "Plugin Version"
+msgstr "Versión del plugin"
+
+#: src/Renderer/WPML_ColumnManager.php:39
+msgid "Error"
+msgstr "Error"
+
+#: src/Renderer/WPML_ColumnManager.php:38
+msgid "Attachments"
+msgstr "Adjuntos"
+
+#: src/Renderer/WPML_ColumnManager.php:37
+msgid "Headers"
+msgstr "Cabeceras"
+
+#: src/Renderer/WPML_ColumnManager.php:36 src/WPML_OptionsManager.php:504
+msgid "Message"
+msgstr "Mensaje"
+
+#: src/Renderer/WPML_ColumnManager.php:35
+msgid "Subject"
+msgstr "Asunto"
+
+#: src/Renderer/WPML_ColumnManager.php:34
+msgid "Receiver"
+msgstr "Destinatario"
+
+#: src/Renderer/WPML_ColumnManager.php:32
+#: src/inc/redux/WPML_Redux_Framework_config.php:191
+msgid "Time"
+msgstr "Hora"
+
+#: src/Renderer/WPML_ColumnManager.php:31
+msgid "ID"
+msgstr "ID"
+
+#: src/WPML_Email_Log_List.php:63
+msgid "No email found."
+msgstr "No se han encontrado ningún correos electrónico."

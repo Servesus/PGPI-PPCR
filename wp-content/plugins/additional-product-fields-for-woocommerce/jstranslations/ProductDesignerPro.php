@@ -1,0 +1,21 @@
+<?php return array(
+"Label"=>__("Label","rednaowooextraproduct"),
+"Required"=>__("Required","rednaowooextraproduct"),
+"General"=>__("General","rednaowooextraproduct"),
+"Enable multiple columns"=>__("Enable multiple columns","rednaowooextraproduct"),
+"Columns"=>__("Columns","rednaowooextraproduct"),
+"Price type"=>__("Price type","rednaowooextraproduct"),
+"None (don't use this field to calculate price)"=>__("None (don't use this field to calculate price)","rednaowooextraproduct"),
+"Fixed Amount"=>__("Fixed Amount","rednaowooextraproduct"),
+"Price Per Item"=>__("Price Per Item","rednaowooextraproduct"),
+"Price"=>__("Price","rednaowooextraproduct"),
+"Sale Price (Empty = No Sale)"=>__("Sale Price (Empty = No Sale)","rednaowooextraproduct"),
+"Hide price"=>__("Hide price","rednaowooextraproduct"),
+"Pricing"=>__("Pricing","rednaowooextraproduct"),
+"Value"=>__("Value","rednaowooextraproduct"),
+"Allowed Extensions (separate them by a comma e.g. .png,.pdf)"=>__("Allowed Extensions (separate them by a comma e.g. .png,.pdf)","rednaowooextraproduct"),
+"Allow multiple files"=>__("Allow multiple files","rednaowooextraproduct"),
+"Show Subtotal"=>__("Show Subtotal","rednaowooextraproduct"),
+"Subtotal Label"=>__("Subtotal Label","rednaowooextraproduct"),
+"Sum of fields in group"=>__("Sum of fields in group","rednaowooextraproduct")
+);

@@ -1,0 +1,177 @@
+.aspect_days_periods .aspect_days_tabs a {
+    display: inline-block;
+    color: inherit;
+    font-size: 1rem;
+    padding: 5px;
+    border: 1px solid;
+    border-color: #ccc;
+    border-right-width: 0;
+    text-decoration: none;
+}
+
+.custom-position-input {
+    width: 600px !important;
+}
+
+.one-row-input {
+    max-width: 200px !important;
+}
+
+.aspect_days_periods .aspect_days_tabs a.active {
+    background: #fff;
+}
+
+.aspect_days_periods .aspect_days_tabs a:last-child {
+    border-right-width: 1px;
+}
+
+.aspect_days_periods .aspect_days_tabs {
+    font-size: 0;
+}
+
+.aspect_days_periods .aspect_day_period {
+    display: none;
+}
+
+.aspect_days_periods .aspect_day_period.active {
+    display: block;
+}
+
+input.aspect_day_error {
+    border-color: red;
+}
+
+.form-table {
+    border-collapse: collapse;
+    margin-top: .5em;
+    width: 100%;
+    clear: both;
+    background-color: #fff;
+    border: 1px solid;
+    border-color: #dcdcdc;
+}
+
+.form-table th {
+    vertical-align: top;
+    text-align: left;
+    padding: 20px 10px 20px 10px;
+    width: 200px;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.reverse-table tr {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    height: 60px;
+}
+
+.reverse-table th {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+.aspect_days_periods .aspect_days_tabs a.active {
+    background: #c5c5c5;
+    color: #fff;
+}
+
+.aspect_days_tabs a:hover {
+    color: #c5c5c5;
+}
+
+.enable-button{
+    color: #2349e2;
+    font-size: 15px;
+}
+
+.enable-button a{
+    text-decoration: none;
+}
+
+.delivery-checkbox {
+    display: inline-block;
+ }
+
+.delivery-text-item {
+    max-width: 400px !important;
+    display: inline-block;
+}
+
+.right-description {
+    display: inline-block;
+}
+
+.right-description-highlight {
+    display: inline-block !important;
+}
+
+.delivery-type-options {
+    display:inline-block;
+    margin-right: 15px;
+}
+
+.margin-left {
+    margin-left: 20px;
+}
+
+.plugins-area {
+
+}
+
+.card-box-plugin {
+    display: inline-block;
+    margin: 0 50px 50px 0;
+    color: #000;
+    width: 250px;
+    height: 250px;
+    box-shadow: 0 0 2px #3e3e3e;
+}
+
+.card-box-header {
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    padding: 20px 30px;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #bebebe;
+}
+
+.card-box-description {
+    font-size: 17px;
+    padding: 20px;
+    height: 85px;
+    overflow: hidden;
+}
+
+.card-box-footer {
+    height: 50px;
+    padding: 0 20px;
+}
+
+.card-box-left-footer {
+    bottom: 0;
+    float: left;
+}
+
+.card-box-right-footer {
+    float: right;
+}
+
+.dot {
+    margin-right: 5px;
+    vertical-align: text-bottom;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-active {
+    background-color: #2ca700;
+}
+
+.dot-enable {
+    background-color: #2349e2;
+}
