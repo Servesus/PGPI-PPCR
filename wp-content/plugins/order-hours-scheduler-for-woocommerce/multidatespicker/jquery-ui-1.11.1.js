@@ -75,7 +75,7 @@
 			return function() {
 				return this.each(function() {
 					if ( !this.id ) {
-						this.id = "ui-id-" + ( ++uuid );
+						this.id = "ui-oh-id-" + ( ++uuid );
 					}
 				});
 			};
@@ -83,7 +83,7 @@
 
 		removeUniqueId: function() {
 			return this.each(function() {
-				if ( /^ui-id-\d+$/.test( this.id ) ) {
+				if ( /^ui-oh-id-\d+$/.test( this.id ) ) {
 					$( this ).removeAttr( "id" );
 				}
 			});
@@ -237,14 +237,14 @@
 				"mousedown";
 
 			return function() {
-				return this.bind( eventType + ".ui-disableSelection", function( event ) {
+				return this.bind( eventType + ".ui-oh-disableSelection", function( event ) {
 					event.preventDefault();
 				});
 			};
 		})(),
 
 		enableSelection: function() {
-			return this.unbind( ".ui-disableSelection" );
+			return this.unbind( ".ui-oh-disableSelection" );
 		},
 
 		zIndex: function( zIndex ) {
@@ -604,12 +604,12 @@
 				.removeAttr( "aria-disabled" )
 				.removeClass(
 					this.widgetFullName + "-disabled " +
-					"ui-state-disabled" );
+					"ui-oh-state-disabled" );
 
 			// clean up events and states
 			this.bindings.unbind( this.eventNamespace );
-			this.hoverable.removeClass( "ui-state-hover" );
-			this.focusable.removeClass( "ui-state-focus" );
+			this.hoverable.removeClass( "ui-oh-state-hover" );
+			this.focusable.removeClass( "ui-oh-state-focus" );
 		},
 		_destroy: $.noop,
 
@@ -674,8 +674,8 @@
 
 				// If the widget is becoming disabled, then nothing is interactive
 				if ( value ) {
-					this.hoverable.removeClass( "ui-state-hover" );
-					this.focusable.removeClass( "ui-state-focus" );
+					this.hoverable.removeClass( "ui-oh-state-hover" );
+					this.focusable.removeClass( "ui-oh-state-focus" );
 				}
 			}
 
@@ -717,7 +717,7 @@
 					// - disabled class as method for disabling individual parts
 					if ( !suppressDisabledCheck &&
 						( instance.options.disabled === true ||
-							$( this ).hasClass( "ui-state-disabled" ) ) ) {
+							$( this ).hasClass( "ui-oh-state-disabled" ) ) ) {
 						return;
 					}
 					return ( typeof handler === "string" ? instance[ handler ] : handler )
@@ -759,10 +759,10 @@
 			this.hoverable = this.hoverable.add( element );
 			this._on( element, {
 				mouseenter: function( event ) {
-					$( event.currentTarget ).addClass( "ui-state-hover" );
+					$( event.currentTarget ).addClass( "ui-oh-state-hover" );
 				},
 				mouseleave: function( event ) {
-					$( event.currentTarget ).removeClass( "ui-state-hover" );
+					$( event.currentTarget ).removeClass( "ui-oh-state-hover" );
 				}
 			});
 		},
@@ -771,10 +771,10 @@
 			this.focusable = this.focusable.add( element );
 			this._on( element, {
 				focusin: function( event ) {
-					$( event.currentTarget ).addClass( "ui-state-focus" );
+					$( event.currentTarget ).addClass( "ui-oh-state-focus" );
 				},
 				focusout: function( event ) {
-					$( event.currentTarget ).removeClass( "ui-state-focus" );
+					$( event.currentTarget ).removeClass( "ui-oh-state-focus" );
 				}
 			});
 		},
@@ -1551,8 +1551,8 @@
 			header: "> li > :first-child,> :not(li):even",
 			heightStyle: "auto",
 			icons: {
-				activeHeader: "ui-icon-triangle-1-s",
-				header: "ui-icon-triangle-1-e"
+				activeHeader: "ui-oh-icon-triangle-1-s",
+				header: "ui-oh-icon-triangle-1-e"
 			},
 
 			// callbacks
@@ -1579,7 +1579,7 @@
 		_create: function() {
 			var options = this.options;
 			this.prevShow = this.prevHide = $();
-			this.element.addClass( "ui-accordion ui-widget ui-helper-reset" )
+			this.element.addClass( "ui-oh-accordion ui-oh-widget ui-oh-helper-reset" )
 			// ARIA
 				.attr( "role", "tablist" );
 
@@ -1607,19 +1607,19 @@
 			var icons = this.options.icons;
 			if ( icons ) {
 				$( "<span>" )
-					.addClass( "ui-accordion-header-icon ui-icon " + icons.header )
+					.addClass( "ui-oh-accordion-header-icon ui-oh-icon " + icons.header )
 					.prependTo( this.headers );
-				this.active.children( ".ui-accordion-header-icon" )
+				this.active.children( ".ui-oh-accordion-header-icon" )
 					.removeClass( icons.header )
 					.addClass( icons.activeHeader );
-				this.headers.addClass( "ui-accordion-icons" );
+				this.headers.addClass( "ui-oh-accordion-icons" );
 			}
 		},
 
 		_destroyIcons: function() {
 			this.headers
-				.removeClass( "ui-accordion-icons" )
-				.children( ".ui-accordion-header-icon" )
+				.removeClass( "ui-oh-accordion-icons" )
+				.children( ".ui-oh-accordion-header-icon" )
 				.remove();
 		},
 
@@ -1628,13 +1628,13 @@
 
 			// clean up main element
 			this.element
-				.removeClass( "ui-accordion ui-widget ui-helper-reset" )
+				.removeClass( "ui-oh-accordion ui-oh-widget ui-oh-helper-reset" )
 				.removeAttr( "role" );
 
 			// clean up headers
 			this.headers
-				.removeClass( "ui-accordion-header ui-accordion-header-active ui-state-default " +
-					"ui-corner-all ui-state-active ui-state-disabled ui-corner-top" )
+				.removeClass( "ui-oh-accordion-header ui-oh-accordion-header-active ui-oh-state-default " +
+					"ui-oh-corner-all ui-oh-state-active ui-oh-state-disabled ui-oh-corner-top" )
 				.removeAttr( "role" )
 				.removeAttr( "aria-expanded" )
 				.removeAttr( "aria-selected" )
@@ -1646,8 +1646,8 @@
 
 			// clean up content panels
 			contents = this.headers.next()
-				.removeClass( "ui-helper-reset ui-widget-content ui-corner-bottom " +
-					"ui-accordion-content ui-accordion-content-active ui-state-disabled" )
+				.removeClass( "ui-oh-helper-reset ui-oh-widget-content ui-oh-corner-bottom " +
+					"ui-oh-accordion-content ui-oh-accordion-content-active ui-oh-state-disabled" )
 				.css( "display", "" )
 				.removeAttr( "role" )
 				.removeAttr( "aria-hidden" )
@@ -1691,10 +1691,10 @@
 			// so we need to add the disabled class to the headers and panels
 			if ( key === "disabled" ) {
 				this.element
-					.toggleClass( "ui-state-disabled", !!value )
+					.toggleClass( "ui-oh-state-disabled", !!value )
 					.attr( "aria-disabled", value );
 				this.headers.add( this.headers.next() )
-					.toggleClass( "ui-state-disabled", !!value );
+					.toggleClass( "ui-oh-state-disabled", !!value );
 			}
 		},
 
@@ -1757,7 +1757,7 @@
 				// was active, but active panel is gone
 			} else if ( this.active.length && !$.contains( this.element[ 0 ], this.active[ 0 ] ) ) {
 				// all remaining panel are disabled
-				if ( this.headers.length === this.headers.find(".ui-state-disabled").length ) {
+				if ( this.headers.length === this.headers.find(".ui-oh-state-disabled").length ) {
 					options.active = false;
 					this.active = $();
 					// activate previous panel
@@ -1777,11 +1777,11 @@
 
 		_processPanels: function() {
 			this.headers = this.element.find( this.options.header )
-				.addClass( "ui-accordion-header ui-state-default ui-corner-all" );
+				.addClass( "ui-oh-accordion-header ui-oh-state-default ui-oh-corner-all" );
 
 			this.headers.next()
-				.addClass( "ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" )
-				.filter( ":not(.ui-accordion-content-active)" )
+				.addClass( "ui-oh-accordion-content ui-oh-helper-reset ui-oh-widget-content ui-oh-corner-bottom" )
+				.filter( ":not(.ui-oh-accordion-content-active)" )
 				.hide();
 		},
 
@@ -1792,10 +1792,10 @@
 				parent = this.element.parent();
 
 			this.active = this._findActive( options.active )
-				.addClass( "ui-accordion-header-active ui-state-active ui-corner-top" )
-				.removeClass( "ui-corner-all" );
+				.addClass( "ui-oh-accordion-header-active ui-oh-state-active ui-oh-corner-top" )
+				.removeClass( "ui-oh-corner-all" );
 			this.active.next()
-				.addClass( "ui-accordion-content-active" )
+				.addClass( "ui-oh-accordion-content-active" )
 				.show();
 
 			this.headers
@@ -1948,26 +1948,26 @@
 
 			// switch classes
 			// corner classes on the previously active header stay after the animation
-			active.removeClass( "ui-accordion-header-active ui-state-active" );
+			active.removeClass( "ui-oh-accordion-header-active ui-oh-state-active" );
 			if ( options.icons ) {
-				active.children( ".ui-accordion-header-icon" )
+				active.children( ".ui-oh-accordion-header-icon" )
 					.removeClass( options.icons.activeHeader )
 					.addClass( options.icons.header );
 			}
 
 			if ( !clickedIsActive ) {
 				clicked
-					.removeClass( "ui-corner-all" )
-					.addClass( "ui-accordion-header-active ui-state-active ui-corner-top" );
+					.removeClass( "ui-oh-corner-all" )
+					.addClass( "ui-oh-accordion-header-active ui-oh-state-active ui-oh-corner-top" );
 				if ( options.icons ) {
-					clicked.children( ".ui-accordion-header-icon" )
+					clicked.children( ".ui-oh-accordion-header-icon" )
 						.removeClass( options.icons.header )
 						.addClass( options.icons.activeHeader );
 				}
 
 				clicked
 					.next()
-					.addClass( "ui-accordion-content-active" );
+					.addClass( "ui-oh-accordion-content-active" );
 			}
 		},
 
@@ -2076,10 +2076,10 @@
 			var toHide = data.oldPanel;
 
 			toHide
-				.removeClass( "ui-accordion-content-active" )
+				.removeClass( "ui-oh-accordion-content-active" )
 				.prev()
-				.removeClass( "ui-corner-top" )
-				.addClass( "ui-corner-all" );
+				.removeClass( "ui-oh-corner-top" )
+				.addClass( "ui-oh-corner-all" );
 
 			// Work around for rendering bug in IE (#5421)
 			if ( toHide.length ) {
@@ -2108,7 +2108,7 @@
 		delay: 300,
 		options: {
 			icons: {
-				submenu: "ui-icon-carat-1-e"
+				submenu: "ui-oh-icon-carat-1-e"
 			},
 			items: "> *",
 			menus: "ul",
@@ -2132,8 +2132,8 @@
 			this.mouseHandled = false;
 			this.element
 				.uniqueId()
-				.addClass( "ui-menu ui-widget ui-widget-content" )
-				.toggleClass( "ui-menu-icons", !!this.element.find( ".ui-icon" ).length )
+				.addClass( "ui-oh-menu ui-oh-widget ui-oh-widget-content" )
+				.toggleClass( "ui-oh-menu-icons", !!this.element.find( ".ui-oh-icon" ).length )
 				.attr({
 					role: this.options.role,
 					tabIndex: 0
@@ -2141,19 +2141,19 @@
 
 			if ( this.options.disabled ) {
 				this.element
-					.addClass( "ui-state-disabled" )
+					.addClass( "ui-oh-state-disabled" )
 					.attr( "aria-disabled", "true" );
 			}
 
 			this._on({
 				// Prevent focus from sticking to links inside menu after clicking
 				// them (focus should always stay on UL during navigation).
-				"mousedown .ui-menu-item": function( event ) {
+				"mousedown .ui-oh-menu-item": function( event ) {
 					event.preventDefault();
 				},
-				"click .ui-menu-item": function( event ) {
+				"click .ui-oh-menu-item": function( event ) {
 					var target = $( event.target );
-					if ( !this.mouseHandled && target.not( ".ui-state-disabled" ).length ) {
+					if ( !this.mouseHandled && target.not( ".ui-oh-state-disabled" ).length ) {
 						this.select( event );
 
 						// Only set the mouseHandled flag if the event will bubble, see #9469.
@@ -2162,30 +2162,30 @@
 						}
 
 						// Open submenu on click
-						if ( target.has( ".ui-menu" ).length ) {
+						if ( target.has( ".ui-oh-menu" ).length ) {
 							this.expand( event );
-						} else if ( !this.element.is( ":focus" ) && $( this.document[ 0 ].activeElement ).closest( ".ui-menu" ).length ) {
+						} else if ( !this.element.is( ":focus" ) && $( this.document[ 0 ].activeElement ).closest( ".ui-oh-menu" ).length ) {
 
 							// Redirect focus to the menu
 							this.element.trigger( "focus", [ true ] );
 
 							// If the active item is on the top level, let it stay active.
 							// Otherwise, blur the active item since it is no longer visible.
-							if ( this.active && this.active.parents( ".ui-menu" ).length === 1 ) {
+							if ( this.active && this.active.parents( ".ui-oh-menu" ).length === 1 ) {
 								clearTimeout( this.timer );
 							}
 						}
 					}
 				},
-				"mouseenter .ui-menu-item": function( event ) {
+				"mouseenter .ui-oh-menu-item": function( event ) {
 					var target = $( event.currentTarget );
-					// Remove ui-state-active class from siblings of the newly focused menu item
+					// Remove ui-oh-state-active class from siblings of the newly focused menu item
 					// to avoid a jump caused by adjacent elements both having a class with a border
-					target.siblings( ".ui-state-active" ).removeClass( "ui-state-active" );
+					target.siblings( ".ui-oh-state-active" ).removeClass( "ui-oh-state-active" );
 					this.focus( event, target );
 				},
 				mouseleave: "collapseAll",
-				"mouseleave .ui-menu": "collapseAll",
+				"mouseleave .ui-oh-menu": "collapseAll",
 				focus: function( event, keepActiveItem ) {
 					// If there's already an active item, keep it active
 					// If not, activate the first item
@@ -2224,8 +2224,8 @@
 			// Destroy (sub)menus
 			this.element
 				.removeAttr( "aria-activedescendant" )
-				.find( ".ui-menu" ).addBack()
-				.removeClass( "ui-menu ui-widget ui-widget-content ui-menu-icons ui-front" )
+				.find( ".ui-oh-menu" ).addBack()
+				.removeClass( "ui-oh-menu ui-oh-widget ui-oh-widget-content ui-oh-menu-icons ui-oh-front" )
 				.removeAttr( "role" )
 				.removeAttr( "tabIndex" )
 				.removeAttr( "aria-labelledby" )
@@ -2236,24 +2236,24 @@
 				.show();
 
 			// Destroy menu items
-			this.element.find( ".ui-menu-item" )
-				.removeClass( "ui-menu-item" )
+			this.element.find( ".ui-oh-menu-item" )
+				.removeClass( "ui-oh-menu-item" )
 				.removeAttr( "role" )
 				.removeAttr( "aria-disabled" )
 				.removeUniqueId()
-				.removeClass( "ui-state-hover" )
+				.removeClass( "ui-oh-state-hover" )
 				.removeAttr( "tabIndex" )
 				.removeAttr( "role" )
 				.removeAttr( "aria-haspopup" )
 				.children().each( function() {
 				var elem = $( this );
-				if ( elem.data( "ui-menu-submenu-carat" ) ) {
+				if ( elem.data( "ui-oh-menu-submenu-carat" ) ) {
 					elem.remove();
 				}
 			});
 
 			// Destroy menu dividers
-			this.element.find( ".ui-menu-divider" ).removeClass( "ui-menu-divider ui-widget-content" );
+			this.element.find( ".ui-oh-menu-divider" ).removeClass( "ui-oh-menu-divider ui-oh-widget-content" );
 		},
 
 		_keydown: function( event ) {
@@ -2287,7 +2287,7 @@
 					this.collapse( event );
 					break;
 				case $.ui.keyCode.RIGHT:
-					if ( this.active && !this.active.is( ".ui-state-disabled" ) ) {
+					if ( this.active && !this.active.is( ".ui-oh-state-disabled" ) ) {
 						this.expand( event );
 					}
 					break;
@@ -2317,7 +2317,7 @@
 						return regex.test( $( this ).text() );
 					});
 					match = skip && match.index( this.active.next() ) !== -1 ?
-						this.active.nextAll( ".ui-menu-item" ) :
+						this.active.nextAll( ".ui-oh-menu-item" ) :
 						match;
 
 					// If no matches on the current filter, reset to the last character pressed
@@ -2351,7 +2351,7 @@
 		},
 
 		_activate: function( event ) {
-			if ( !this.active.is( ".ui-state-disabled" ) ) {
+			if ( !this.active.is( ".ui-oh-state-disabled" ) ) {
 				if ( this.active.is( "[aria-haspopup='true']" ) ) {
 					this.expand( event );
 				} else {
@@ -2366,11 +2366,11 @@
 				icon = this.options.icons.submenu,
 				submenus = this.element.find( this.options.menus );
 
-			this.element.toggleClass( "ui-menu-icons", !!this.element.find( ".ui-icon" ).length );
+			this.element.toggleClass( "ui-oh-menu-icons", !!this.element.find( ".ui-oh-icon" ).length );
 
 			// Initialize nested menus
-			submenus.filter( ":not(.ui-menu)" )
-				.addClass( "ui-menu ui-widget ui-widget-content ui-front" )
+			submenus.filter( ":not(.ui-oh-menu)" )
+				.addClass( "ui-oh-menu ui-oh-widget ui-oh-widget-content ui-oh-front" )
 				.hide()
 				.attr({
 					role: this.options.role,
@@ -2381,8 +2381,8 @@
 					var menu = $( this ),
 						item = menu.parent(),
 						submenuCarat = $( "<span>" )
-							.addClass( "ui-menu-icon ui-icon " + icon )
-							.data( "ui-menu-submenu-carat", true );
+							.addClass( "ui-oh-menu-icon ui-oh-icon " + icon )
+							.data( "ui-oh-menu-submenu-carat", true );
 
 					item
 						.attr( "aria-haspopup", "true" )
@@ -2394,16 +2394,16 @@
 			items = menus.find( this.options.items );
 
 			// Initialize menu-items containing spaces and/or dashes only as dividers
-			items.not( ".ui-menu-item" ).each(function() {
+			items.not( ".ui-oh-menu-item" ).each(function() {
 				var item = $( this );
 				if ( that._isDivider( item ) ) {
-					item.addClass( "ui-widget-content ui-menu-divider" );
+					item.addClass( "ui-oh-widget-content ui-oh-menu-divider" );
 				}
 			});
 
 			// Don't refresh list items that are already adapted
-			items.not( ".ui-menu-item, .ui-menu-divider" )
-				.addClass( "ui-menu-item" )
+			items.not( ".ui-oh-menu-item, .ui-oh-menu-divider" )
+				.addClass( "ui-oh-menu-item" )
 				.uniqueId()
 				.attr({
 					tabIndex: -1,
@@ -2411,7 +2411,7 @@
 				});
 
 			// Add aria-disabled attribute to any disabled menu item
-			items.filter( ".ui-state-disabled" ).attr( "aria-disabled", "true" );
+			items.filter( ".ui-oh-state-disabled" ).attr( "aria-disabled", "true" );
 
 			// If the active item has been removed, blur the menu
 			if ( this.active && !$.contains( this.element[ 0 ], this.active[ 0 ] ) ) {
@@ -2428,13 +2428,13 @@
 
 		_setOption: function( key, value ) {
 			if ( key === "icons" ) {
-				this.element.find( ".ui-menu-icon" )
+				this.element.find( ".ui-oh-menu-icon" )
 					.removeClass( this.options.icons.submenu )
 					.addClass( value.submenu );
 			}
 			if ( key === "disabled" ) {
 				this.element
-					.toggleClass( "ui-state-disabled", !!value )
+					.toggleClass( "ui-oh-state-disabled", !!value )
 					.attr( "aria-disabled", value );
 			}
 			this._super( key, value );
@@ -2447,7 +2447,7 @@
 			this._scrollIntoView( item );
 
 			this.active = item.first();
-			focused = this.active.addClass( "ui-state-focus" ).removeClass( "ui-state-active" );
+			focused = this.active.addClass( "ui-oh-state-focus" ).removeClass( "ui-oh-state-active" );
 			// Only update aria-activedescendant if there's a role
 			// otherwise we assume focus is managed elsewhere
 			if ( this.options.role ) {
@@ -2457,8 +2457,8 @@
 			// Highlight active parent menu item, if any
 			this.active
 				.parent()
-				.closest( ".ui-menu-item" )
-				.addClass( "ui-state-active" );
+				.closest( ".ui-oh-menu-item" )
+				.addClass( "ui-oh-state-active" );
 
 			if ( event && event.type === "keydown" ) {
 				this._close();
@@ -2468,7 +2468,7 @@
 				}, this.delay );
 			}
 
-			nested = item.children( ".ui-menu" );
+			nested = item.children( ".ui-oh-menu" );
 			if ( nested.length && event && ( /^mouse/.test( event.type ) ) ) {
 				this._startOpening(nested);
 			}
@@ -2504,7 +2504,7 @@
 				return;
 			}
 
-			this.active.removeClass( "ui-state-focus" );
+			this.active.removeClass( "ui-oh-state-focus" );
 			this.active = null;
 
 			this._trigger( "blur", event, { item: this.active } );
@@ -2531,7 +2531,7 @@
 			}, this.options.position );
 
 			clearTimeout( this.timer );
-			this.element.find( ".ui-menu" ).not( submenu.parents( ".ui-menu" ) )
+			this.element.find( ".ui-oh-menu" ).not( submenu.parents( ".ui-oh-menu" ) )
 				.hide()
 				.attr( "aria-hidden", "true" );
 
@@ -2547,7 +2547,7 @@
 			this.timer = this._delay(function() {
 				// If we were passed an event, look for the submenu that contains the event
 				var currentMenu = all ? this.element :
-					$( event && event.target ).closest( this.element.find( ".ui-menu" ) );
+					$( event && event.target ).closest( this.element.find( ".ui-oh-menu" ) );
 
 				// If we found no valid submenu ancestor, use the main menu to close all sub menus anyway
 				if ( !currentMenu.length ) {
@@ -2569,17 +2569,17 @@
 			}
 
 			startMenu
-				.find( ".ui-menu" )
+				.find( ".ui-oh-menu" )
 				.hide()
 				.attr( "aria-hidden", "true" )
 				.attr( "aria-expanded", "false" )
 				.end()
-				.find( ".ui-state-active" ).not( ".ui-state-focus" )
-				.removeClass( "ui-state-active" );
+				.find( ".ui-oh-state-active" ).not( ".ui-oh-state-focus" )
+				.removeClass( "ui-oh-state-active" );
 		},
 
 		_closeOnDocumentClick: function( event ) {
-			return !$( event.target ).closest( ".ui-menu" ).length;
+			return !$( event.target ).closest( ".ui-oh-menu" ).length;
 		},
 
 		_isDivider: function( item ) {
@@ -2590,7 +2590,7 @@
 
 		collapse: function( event ) {
 			var newItem = this.active &&
-				this.active.parent().closest( ".ui-menu-item", this.element );
+				this.active.parent().closest( ".ui-oh-menu-item", this.element );
 			if ( newItem && newItem.length ) {
 				this._close();
 				this.focus( event, newItem );
@@ -2600,7 +2600,7 @@
 		expand: function( event ) {
 			var newItem = this.active &&
 				this.active
-					.children( ".ui-menu " )
+					.children( ".ui-oh-menu " )
 					.find( this.options.items )
 					.first();
 
@@ -2623,11 +2623,11 @@
 		},
 
 		isFirstItem: function() {
-			return this.active && !this.active.prevAll( ".ui-menu-item" ).length;
+			return this.active && !this.active.prevAll( ".ui-oh-menu-item" ).length;
 		},
 
 		isLastItem: function() {
-			return this.active && !this.active.nextAll( ".ui-menu-item" ).length;
+			return this.active && !this.active.nextAll( ".ui-oh-menu-item" ).length;
 		},
 
 		_move: function( direction, filter, event ) {
@@ -2635,11 +2635,11 @@
 			if ( this.active ) {
 				if ( direction === "first" || direction === "last" ) {
 					next = this.active
-						[ direction === "first" ? "prevAll" : "nextAll" ]( ".ui-menu-item" )
+						[ direction === "first" ? "prevAll" : "nextAll" ]( ".ui-oh-menu-item" )
 						.eq( -1 );
 				} else {
 					next = this.active
-						[ direction + "All" ]( ".ui-menu-item" )
+						[ direction + "All" ]( ".ui-oh-menu-item" )
 						.eq( 0 );
 				}
 			}
@@ -2663,7 +2663,7 @@
 			if ( this._hasScroll() ) {
 				base = this.active.offset().top;
 				height = this.element.height();
-				this.active.nextAll( ".ui-menu-item" ).each(function() {
+				this.active.nextAll( ".ui-oh-menu-item" ).each(function() {
 					item = $( this );
 					return item.offset().top - base - height < 0;
 				});
@@ -2687,7 +2687,7 @@
 			if ( this._hasScroll() ) {
 				base = this.active.offset().top;
 				height = this.element.height();
-				this.active.prevAll( ".ui-menu-item" ).each(function() {
+				this.active.prevAll( ".ui-oh-menu-item" ).each(function() {
 					item = $( this );
 					return item.offset().top - base + height > 0;
 				});
@@ -2705,9 +2705,9 @@
 		select: function( event ) {
 			// TODO: It should never be possible to not have an active item at this
 			// point, but the tests don't trigger mouseenter before click.
-			this.active = this.active || $( event.target ).closest( ".ui-menu-item" );
+			this.active = this.active || $( event.target ).closest( ".ui-oh-menu-item" );
 			var ui = { item: this.active };
-			if ( !this.active.has( ".ui-menu" ).length ) {
+			if ( !this.active.has( ".ui-oh-menu" ).length ) {
 				this.collapseAll( event, true );
 			}
 			this._trigger( "select", event, ui );
@@ -2781,7 +2781,7 @@
 			this.isNewMenu = true;
 
 			this.element
-				.addClass( "ui-autocomplete-input" )
+				.addClass( "ui-oh-autocomplete-input" )
 				.attr( "autocomplete", "off" );
 
 			this._on( this.element, {
@@ -2903,7 +2903,7 @@
 
 			this._initSource();
 			this.menu = $( "<ul>" )
-				.addClass( "ui-autocomplete ui-front" )
+				.addClass( "ui-oh-autocomplete ui-oh-front" )
 				.appendTo( this._appendTo() )
 				.menu({
 					// disable ARIA support, the live region takes care of that
@@ -2929,7 +2929,7 @@
 					// so we have to track the next mousedown and close the menu if
 					// the user clicks somewhere outside of the autocomplete
 					var menuElement = this.menu.element[ 0 ];
-					if ( !$( event.target ).closest( ".ui-menu-item" ).length ) {
+					if ( !$( event.target ).closest( ".ui-oh-menu-item" ).length ) {
 						this._delay(function() {
 							var that = this;
 							this.document.one( "mousedown", function( event ) {
@@ -2959,7 +2959,7 @@
 						}
 					}
 
-					item = ui.item.data( "ui-autocomplete-item" );
+					item = ui.item.data( "ui-oh-autocomplete-item" );
 					if ( false !== this._trigger( "focus", event, { item: item } ) ) {
 						// use value to match what will end up in the input, if it was a key event
 						if ( event.originalEvent && /^key/.test( event.originalEvent.type ) ) {
@@ -2975,7 +2975,7 @@
 					}
 				},
 				menuselect: function( event, ui ) {
-					var item = ui.item.data( "ui-autocomplete-item" ),
+					var item = ui.item.data( "ui-oh-autocomplete-item" ),
 						previous = this.previous;
 
 					// only trigger when focus was lost (click on menu)
@@ -3008,7 +3008,7 @@
 				"aria-live": "assertive",
 				"aria-relevant": "additions"
 			})
-				.addClass( "ui-helper-hidden-accessible" )
+				.addClass( "ui-oh-helper-hidden-accessible" )
 				.appendTo( this.document[ 0 ].body );
 
 			// turning off autocomplete prevents the browser from remembering the
@@ -3024,7 +3024,7 @@
 		_destroy: function() {
 			clearTimeout( this.searching );
 			this.element
-				.removeClass( "ui-autocomplete-input" )
+				.removeClass( "ui-oh-autocomplete-input" )
 				.removeAttr( "autocomplete" );
 			this.menu.element.remove();
 			this.liveRegion.remove();
@@ -3053,7 +3053,7 @@
 			}
 
 			if ( !element || !element[ 0 ] ) {
-				element = this.element.closest( ".ui-front" );
+				element = this.element.closest( ".ui-oh-front" );
 			}
 
 			if ( !element.length ) {
@@ -3129,7 +3129,7 @@
 
 		_search: function( value ) {
 			this.pending++;
-			this.element.addClass( "ui-autocomplete-loading" );
+			this.element.addClass( "ui-oh-autocomplete-loading" );
 			this.cancelSearch = false;
 
 			this.source( { term: value }, this._response() );
@@ -3145,7 +3145,7 @@
 
 				this.pending--;
 				if ( !this.pending ) {
-					this.element.removeClass( "ui-autocomplete-loading" );
+					this.element.removeClass( "ui-oh-autocomplete-loading" );
 				}
 			}, this );
 		},
@@ -3239,7 +3239,7 @@
 		},
 
 		_renderItemData: function( ul, item ) {
-			return this._renderItem( ul, item ).data( "ui-autocomplete-item", item );
+			return this._renderItem( ul, item ).data( "ui-oh-autocomplete-item", item );
 		},
 
 		_renderItem: function( ul, item ) {
@@ -3340,12 +3340,12 @@
 
 
 	var lastActive,
-		baseClasses = "ui-button ui-widget ui-state-default ui-corner-all",
-		typeClasses = "ui-button-icons-only ui-button-icon-only ui-button-text-icons ui-button-text-icon-primary ui-button-text-icon-secondary ui-button-text-only",
+		baseClasses = "ui-oh-button ui-oh-widget ui-oh-state-default ui-oh-corner-all",
+		typeClasses = "ui-oh-button-icons-only ui-oh-button-icon-only ui-oh-button-text-icons ui-oh-button-text-icon-primary ui-oh-button-text-icon-secondary ui-oh-button-text-only",
 		formResetHandler = function() {
 			var form = $( this );
 			setTimeout(function() {
-				form.find( ":ui-button" ).button( "refresh" );
+				form.find( ":ui-oh-button" ).button( "refresh" );
 			}, 1 );
 		},
 		radioGroup = function( radio ) {
@@ -3395,7 +3395,7 @@
 			var that = this,
 				options = this.options,
 				toggleButton = this.type === "checkbox" || this.type === "radio",
-				activeClass = !toggleButton ? "ui-state-active" : "";
+				activeClass = !toggleButton ? "ui-oh-state-active" : "";
 
 			if ( options.label === null ) {
 				options.label = (this.type === "input" ? this.buttonElement.val() : this.buttonElement.html());
@@ -3411,7 +3411,7 @@
 						return;
 					}
 					if ( this === lastActive ) {
-						$( this ).addClass( "ui-state-active" );
+						$( this ).addClass( "ui-oh-state-active" );
 					}
 				})
 				.bind( "mouseleave" + this.eventNamespace, function() {
@@ -3428,13 +3428,13 @@
 				});
 
 			// Can't use _focusable() because the element that receives focus
-			// and the element that gets the ui-state-focus class are different
+			// and the element that gets the ui-oh-state-focus class are different
 			this._on({
 				focus: function() {
-					this.buttonElement.addClass( "ui-state-focus" );
+					this.buttonElement.addClass( "ui-oh-state-focus" );
 				},
 				blur: function() {
-					this.buttonElement.removeClass( "ui-state-focus" );
+					this.buttonElement.removeClass( "ui-oh-state-focus" );
 				}
 			});
 
@@ -3455,7 +3455,7 @@
 					if ( options.disabled ) {
 						return false;
 					}
-					$( this ).addClass( "ui-state-active" );
+					$( this ).addClass( "ui-oh-state-active" );
 					that.buttonElement.attr( "aria-pressed", "true" );
 
 					var radio = that.element[ 0 ];
@@ -3464,7 +3464,7 @@
 						.map(function() {
 							return $( this ).button( "widget" )[ 0 ];
 						})
-						.removeClass( "ui-state-active" )
+						.removeClass( "ui-oh-state-active" )
 						.attr( "aria-pressed", "false" );
 				});
 			} else {
@@ -3473,7 +3473,7 @@
 						if ( options.disabled ) {
 							return false;
 						}
-						$( this ).addClass( "ui-state-active" );
+						$( this ).addClass( "ui-oh-state-active" );
 						lastActive = this;
 						that.document.one( "mouseup", function() {
 							lastActive = null;
@@ -3483,20 +3483,20 @@
 						if ( options.disabled ) {
 							return false;
 						}
-						$( this ).removeClass( "ui-state-active" );
+						$( this ).removeClass( "ui-oh-state-active" );
 					})
 					.bind( "keydown" + this.eventNamespace, function(event) {
 						if ( options.disabled ) {
 							return false;
 						}
 						if ( event.keyCode === $.ui.keyCode.SPACE || event.keyCode === $.ui.keyCode.ENTER ) {
-							$( this ).addClass( "ui-state-active" );
+							$( this ).addClass( "ui-oh-state-active" );
 						}
 					})
 					// see #8559, we bind to blur here in case the button element loses
 					// focus between keydown and keyup, it would be left in an "active" state
 					.bind( "keyup" + this.eventNamespace + " blur" + this.eventNamespace, function() {
-						$( this ).removeClass( "ui-state-active" );
+						$( this ).removeClass( "ui-oh-state-active" );
 					});
 
 				if ( this.buttonElement.is("a") ) {
@@ -3539,11 +3539,11 @@
 						this.buttonElement = ancestor.find( labelSelector );
 					}
 				}
-				this.element.addClass( "ui-helper-hidden-accessible" );
+				this.element.addClass( "ui-oh-helper-hidden-accessible" );
 
 				checked = this.element.is( ":checked" );
 				if ( checked ) {
-					this.buttonElement.addClass( "ui-state-active" );
+					this.buttonElement.addClass( "ui-oh-state-active" );
 				}
 				this.buttonElement.prop( "aria-pressed", checked );
 			} else {
@@ -3557,12 +3557,12 @@
 
 		_destroy: function() {
 			this.element
-				.removeClass( "ui-helper-hidden-accessible" );
+				.removeClass( "ui-oh-helper-hidden-accessible" );
 			this.buttonElement
-				.removeClass( baseClasses + " ui-state-active " + typeClasses )
+				.removeClass( baseClasses + " ui-oh-state-active " + typeClasses )
 				.removeAttr( "role" )
 				.removeAttr( "aria-pressed" )
-				.html( this.buttonElement.find(".ui-button-text").html() );
+				.html( this.buttonElement.find(".ui-oh-button-text").html() );
 
 			if ( !this.hasTitle ) {
 				this.buttonElement.removeAttr( "title" );
@@ -3572,13 +3572,13 @@
 		_setOption: function( key, value ) {
 			this._super( key, value );
 			if ( key === "disabled" ) {
-				this.widget().toggleClass( "ui-state-disabled", !!value );
+				this.widget().toggleClass( "ui-oh-state-disabled", !!value );
 				this.element.prop( "disabled", !!value );
 				if ( value ) {
 					if ( this.type === "checkbox" || this.type === "radio" ) {
-						this.buttonElement.removeClass( "ui-state-focus" );
+						this.buttonElement.removeClass( "ui-oh-state-focus" );
 					} else {
-						this.buttonElement.removeClass( "ui-state-focus ui-state-active" );
+						this.buttonElement.removeClass( "ui-oh-state-focus ui-oh-state-active" );
 					}
 				}
 				return;
@@ -3588,7 +3588,7 @@
 
 		refresh: function() {
 			//See #8237 & #8828
-			var isDisabled = this.element.is( "input, button" ) ? this.element.is( ":disabled" ) : this.element.hasClass( "ui-button-disabled" );
+			var isDisabled = this.element.is( "input, button" ) ? this.element.is( ":disabled" ) : this.element.hasClass( "ui-oh-button-disabled" );
 
 			if ( isDisabled !== this.options.disabled ) {
 				this._setOption( "disabled", isDisabled );
@@ -3597,22 +3597,22 @@
 				radioGroup( this.element[0] ).each(function() {
 					if ( $( this ).is( ":checked" ) ) {
 						$( this ).button( "widget" )
-							.addClass( "ui-state-active" )
+							.addClass( "ui-oh-state-active" )
 							.attr( "aria-pressed", "true" );
 					} else {
 						$( this ).button( "widget" )
-							.removeClass( "ui-state-active" )
+							.removeClass( "ui-oh-state-active" )
 							.attr( "aria-pressed", "false" );
 					}
 				});
 			} else if ( this.type === "checkbox" ) {
 				if ( this.element.is( ":checked" ) ) {
 					this.buttonElement
-						.addClass( "ui-state-active" )
+						.addClass( "ui-oh-state-active" )
 						.attr( "aria-pressed", "true" );
 				} else {
 					this.buttonElement
-						.removeClass( "ui-state-active" )
+						.removeClass( "ui-oh-state-active" )
 						.attr( "aria-pressed", "false" );
 				}
 			}
@@ -3627,7 +3627,7 @@
 			}
 			var buttonElement = this.buttonElement.removeClass( typeClasses ),
 				buttonText = $( "<span></span>", this.document[0] )
-					.addClass( "ui-button-text" )
+					.addClass( "ui-oh-button-text" )
 					.html( this.options.label )
 					.appendTo( buttonElement.empty() )
 					.text(),
@@ -3637,26 +3637,26 @@
 
 			if ( icons.primary || icons.secondary ) {
 				if ( this.options.text ) {
-					buttonClasses.push( "ui-button-text-icon" + ( multipleIcons ? "s" : ( icons.primary ? "-primary" : "-secondary" ) ) );
+					buttonClasses.push( "ui-oh-button-text-icon" + ( multipleIcons ? "s" : ( icons.primary ? "-primary" : "-secondary" ) ) );
 				}
 
 				if ( icons.primary ) {
-					buttonElement.prepend( "<span class='ui-button-icon-primary ui-icon " + icons.primary + "'></span>" );
+					buttonElement.prepend( "<span class='ui-oh-button-icon-primary ui-oh-icon " + icons.primary + "'></span>" );
 				}
 
 				if ( icons.secondary ) {
-					buttonElement.append( "<span class='ui-button-icon-secondary ui-icon " + icons.secondary + "'></span>" );
+					buttonElement.append( "<span class='ui-oh-button-icon-secondary ui-oh-icon " + icons.secondary + "'></span>" );
 				}
 
 				if ( !this.options.text ) {
-					buttonClasses.push( multipleIcons ? "ui-button-icons-only" : "ui-button-icon-only" );
+					buttonClasses.push( multipleIcons ? "ui-oh-button-icons-only" : "ui-oh-button-icon-only" );
 
 					if ( !this.hasTitle ) {
 						buttonElement.attr( "title", $.trim( buttonText ) );
 					}
 				}
 			} else {
-				buttonClasses.push( "ui-button-text-only" );
+				buttonClasses.push( "ui-oh-button-text-only" );
 			}
 			buttonElement.addClass( buttonClasses.join( " " ) );
 		}
@@ -3665,11 +3665,11 @@
 	$.widget( "ui.buttonset", {
 		version: "1.11.1",
 		options: {
-			items: "button, input[type=button], input[type=submit], input[type=reset], input[type=checkbox], input[type=radio], a, :data(ui-button)"
+			items: "button, input[type=button], input[type=submit], input[type=reset], input[type=checkbox], input[type=radio], a, :data(ui-oh-button)"
 		},
 
 		_create: function() {
-			this.element.addClass( "ui-buttonset" );
+			this.element.addClass( "ui-oh-buttonset" );
 		},
 
 		_init: function() {
@@ -3687,10 +3687,10 @@
 		refresh: function() {
 			var rtl = this.element.css( "direction" ) === "rtl",
 				allButtons = this.element.find( this.options.items ),
-				existingButtons = allButtons.filter( ":ui-button" );
+				existingButtons = allButtons.filter( ":ui-oh-button" );
 
 			// Initialize new buttons
-			allButtons.not( ":ui-button" ).button();
+			allButtons.not( ":ui-oh-button" ).button();
 
 			// Refresh existing buttons
 			existingButtons.button( "refresh" );
@@ -3699,23 +3699,23 @@
 				.map(function() {
 					return $( this ).button( "widget" )[ 0 ];
 				})
-				.removeClass( "ui-corner-all ui-corner-left ui-corner-right" )
+				.removeClass( "ui-oh-corner-all ui-oh-corner-left ui-oh-corner-right" )
 				.filter( ":first" )
-				.addClass( rtl ? "ui-corner-right" : "ui-corner-left" )
+				.addClass( rtl ? "ui-oh-corner-right" : "ui-oh-corner-left" )
 				.end()
 				.filter( ":last" )
-				.addClass( rtl ? "ui-corner-left" : "ui-corner-right" )
+				.addClass( rtl ? "ui-oh-corner-left" : "ui-oh-corner-right" )
 				.end()
 				.end();
 		},
 
 		_destroy: function() {
-			this.element.removeClass( "ui-buttonset" );
+			this.element.removeClass( "ui-oh-buttonset" );
 			this.buttons
 				.map(function() {
 					return $( this ).button( "widget" )[ 0 ];
 				})
-				.removeClass( "ui-corner-left ui-corner-right" )
+				.removeClass( "ui-oh-corner-left ui-oh-corner-right" )
 				.end()
 				.button( "destroy" );
 		}
@@ -3773,15 +3773,15 @@
 		this._disabledInputs = []; // List of date picker inputs that have been disabled
 		this._datepickerShowing = false; // True if the popup picker is showing , false if not
 		this._inDialog = false; // True if showing within a "dialog", false if not
-		this._mainDivId = "ui-datepicker-div"; // The ID of the main datepicker division
-		this._inlineClass = "ui-datepicker-inline"; // The name of the inline marker class
-		this._appendClass = "ui-datepicker-append"; // The name of the append marker class
-		this._triggerClass = "ui-datepicker-trigger"; // The name of the trigger marker class
-		this._dialogClass = "ui-datepicker-dialog"; // The name of the dialog marker class
-		this._disableClass = "ui-datepicker-disabled"; // The name of the disabled covering marker class
-		this._unselectableClass = "ui-datepicker-unselectable"; // The name of the unselectable cell marker class
-		this._currentClass = "ui-datepicker-current-day"; // The name of the current day marker class
-		this._dayOverClass = "ui-datepicker-days-cell-over"; // The name of the day hover marker class
+		this._mainDivId = "ui-oh-datepicker-div"; // The ID of the main datepicker division
+		this._inlineClass = "ui-oh-datepicker-inline"; // The name of the inline marker class
+		this._appendClass = "ui-oh-datepicker-append"; // The name of the append marker class
+		this._triggerClass = "ui-oh-datepicker-trigger"; // The name of the trigger marker class
+		this._dialogClass = "ui-oh-datepicker-dialog"; // The name of the dialog marker class
+		this._disableClass = "ui-oh-datepicker-disabled"; // The name of the disabled covering marker class
+		this._unselectableClass = "ui-oh-datepicker-unselectable"; // The name of the unselectable cell marker class
+		this._currentClass = "ui-oh-datepicker-current-day"; // The name of the current day marker class
+		this._dayOverClass = "ui-oh-datepicker-days-cell-over"; // The name of the day hover marker class
 		this.regional = []; // Available regional settings, indexed by language code
 		this.regional[""] = { // Default regional settings
 			closeText: "Done", // Display text for close link
@@ -3854,7 +3854,7 @@
 		$.extend(this._defaults, this.regional[""]);
 		this.regional.en = $.extend( true, {}, this.regional[ "" ]);
 		this.regional[ "en-US" ] = $.extend( true, {}, this.regional.en );
-		this.dpDiv = datepicker_bindHover($("<div id='" + this._mainDivId + "' class='ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>"));
+		this.dpDiv = datepicker_bindHover($("<div id='" + this._mainDivId + "' class='ui-oh-datepicker ui-oh-widget ui-oh-widget-content ui-oh-helper-clearfix ui-oh-corner-all'></div>"));
 	}
 
 	$.extend(Datepicker.prototype, {
@@ -3907,7 +3907,7 @@
 				drawMonth: 0, drawYear: 0, // month being drawn
 				inline: inline, // is datepicker inline or not
 				dpDiv: (!inline ? this.dpDiv : // presentation div
-					datepicker_bindHover($("<div class='" + this._inlineClass + " ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>")))};
+					datepicker_bindHover($("<div class='" + this._inlineClass + " ui-oh-datepicker ui-oh-widget ui-oh-widget-content ui-oh-helper-clearfix ui-oh-corner-all'></div>")))};
 		},
 
 		/* Attach the date picker to an input field. */
@@ -4124,8 +4124,8 @@
 				filter("img").css({opacity: "1.0", cursor: ""});
 			} else if (nodeName === "div" || nodeName === "span") {
 				inline = $target.children("." + this._inlineClass);
-				inline.children().removeClass("ui-state-disabled");
-				inline.find("select.ui-datepicker-month, select.ui-datepicker-year").
+				inline.children().removeClass("ui-oh-state-disabled");
+				inline.find("select.ui-oh-datepicker-month, select.ui-oh-datepicker-year").
 				prop("disabled", false);
 			}
 			this._disabledInputs = $.map(this._disabledInputs,
@@ -4152,8 +4152,8 @@
 				filter("img").css({opacity: "0.5", cursor: "default"});
 			} else if (nodeName === "div" || nodeName === "span") {
 				inline = $target.children("." + this._inlineClass);
-				inline.children().addClass("ui-state-disabled");
-				inline.find("select.ui-datepicker-month, select.ui-datepicker-year").
+				inline.children().addClass("ui-oh-state-disabled");
+				inline.find("select.ui-oh-datepicker-month, select.ui-oh-datepicker-year").
 				prop("disabled", true);
 			}
 			this._disabledInputs = $.map(this._disabledInputs,
@@ -4293,7 +4293,7 @@
 			var onSelect, dateStr, sel,
 				inst = $.datepicker._getInst(event.target),
 				handled = true,
-				isRTL = inst.dpDiv.is(".ui-datepicker-rtl");
+				isRTL = inst.dpDiv.is(".ui-oh-datepicker-rtl");
 
 			inst._keyEvent = true;
 			if ($.datepicker._datepickerShowing) {
@@ -4523,14 +4523,14 @@
 				datepicker_handleMouseover.apply( activeCell.get( 0 ) );
 			}
 
-			inst.dpDiv.removeClass("ui-datepicker-multi-2 ui-datepicker-multi-3 ui-datepicker-multi-4").width("");
+			inst.dpDiv.removeClass("ui-oh-datepicker-multi-2 ui-oh-datepicker-multi-3 ui-oh-datepicker-multi-4").width("");
 			if (cols > 1) {
-				inst.dpDiv.addClass("ui-datepicker-multi-" + cols).css("width", (width * cols) + "em");
+				inst.dpDiv.addClass("ui-oh-datepicker-multi-" + cols).css("width", (width * cols) + "em");
 			}
 			inst.dpDiv[(numMonths[0] !== 1 || numMonths[1] !== 1 ? "add" : "remove") +
-			"Class"]("ui-datepicker-multi");
+			"Class"]("ui-oh-datepicker-multi");
 			inst.dpDiv[(this._get(inst, "isRTL") ? "add" : "remove") +
-			"Class"]("ui-datepicker-rtl");
+			"Class"]("ui-oh-datepicker-rtl");
 
 			if (inst === $.datepicker._curInst && $.datepicker._datepickerShowing && $.datepicker._shouldFocusInput( inst ) ) {
 				inst.input.focus();
@@ -4542,7 +4542,7 @@
 				setTimeout(function(){
 					//assure that inst.yearshtml didn't change.
 					if( origyearshtml === inst.yearshtml && inst.yearshtml ){
-						inst.dpDiv.find("select.ui-datepicker-year:first").replaceWith(inst.yearshtml);
+						inst.dpDiv.find("select.ui-oh-datepicker-year:first").replaceWith(inst.yearshtml);
 					}
 					origyearshtml = inst.yearshtml = null;
 				}, 0);
@@ -4642,7 +4642,7 @@
 
 		/* Tidy up after a dialog display. */
 		_tidyDialog: function(inst) {
-			inst.dpDiv.removeClass(this._dialogClass).unbind(".ui-datepicker-calendar");
+			inst.dpDiv.removeClass(this._dialogClass).unbind(".ui-oh-datepicker-calendar");
 		},
 
 		/* Close date picker if clicked elsewhere. */
@@ -5380,9 +5380,9 @@
 				this._getFormatConfig(inst)));
 
 			prev = (this._canAdjustMonth(inst, -1, drawYear, drawMonth) ?
-				"<a class='ui-datepicker-prev ui-corner-all' data-handler='prev' data-event='click'" +
-				" title='" + prevText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "e" : "w") + "'>" + prevText + "</span></a>" :
-				(hideIfNoPrevNext ? "" : "<a class='ui-datepicker-prev ui-corner-all ui-state-disabled' title='"+ prevText +"'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "e" : "w") + "'>" + prevText + "</span></a>"));
+				"<a class='ui-oh-datepicker-prev ui-oh-corner-all' data-handler='prev' data-event='click'" +
+				" title='" + prevText + "'><span class='ui-oh-icon ui-oh-icon-circle-triangle-" + ( isRTL ? "e" : "w") + "'>" + prevText + "</span></a>" :
+				(hideIfNoPrevNext ? "" : "<a class='ui-oh-datepicker-prev ui-oh-corner-all ui-oh-state-disabled' title='"+ prevText +"'><span class='ui-oh-icon ui-oh-icon-circle-triangle-" + ( isRTL ? "e" : "w") + "'>" + prevText + "</span></a>"));
 
 			nextText = this._get(inst, "nextText");
 			nextText = (!navigationAsDateFormat ? nextText : this.formatDate(nextText,
@@ -5390,20 +5390,20 @@
 				this._getFormatConfig(inst)));
 
 			next = (this._canAdjustMonth(inst, +1, drawYear, drawMonth) ?
-				"<a class='ui-datepicker-next ui-corner-all' data-handler='next' data-event='click'" +
-				" title='" + nextText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "w" : "e") + "'>" + nextText + "</span></a>" :
-				(hideIfNoPrevNext ? "" : "<a class='ui-datepicker-next ui-corner-all ui-state-disabled' title='"+ nextText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "w" : "e") + "'>" + nextText + "</span></a>"));
+				"<a class='ui-oh-datepicker-next ui-oh-corner-all' data-handler='next' data-event='click'" +
+				" title='" + nextText + "'><span class='ui-oh-icon ui-oh-icon-circle-triangle-" + ( isRTL ? "w" : "e") + "'>" + nextText + "</span></a>" :
+				(hideIfNoPrevNext ? "" : "<a class='ui-oh-datepicker-next ui-oh-corner-all ui-oh-state-disabled' title='"+ nextText + "'><span class='ui-oh-icon ui-oh-icon-circle-triangle-" + ( isRTL ? "w" : "e") + "'>" + nextText + "</span></a>"));
 
 			currentText = this._get(inst, "currentText");
 			gotoDate = (this._get(inst, "gotoCurrent") && inst.currentDay ? currentDate : today);
 			currentText = (!navigationAsDateFormat ? currentText :
 				this.formatDate(currentText, gotoDate, this._getFormatConfig(inst)));
 
-			controls = (!inst.inline ? "<button type='button' class='ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all' data-handler='hide' data-event='click'>" +
+			controls = (!inst.inline ? "<button type='button' class='ui-oh-datepicker-close ui-oh-state-default ui-oh-priority-primary ui-oh-corner-all' data-handler='hide' data-event='click'>" +
 				this._get(inst, "closeText") + "</button>" : "");
 
-			buttonPanel = (showButtonPanel) ? "<div class='ui-datepicker-buttonpane ui-widget-content'>" + (isRTL ? controls : "") +
-				(this._isInRange(inst, gotoDate) ? "<button type='button' class='ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all' data-handler='today' data-event='click'" +
+			buttonPanel = (showButtonPanel) ? "<div class='ui-oh-datepicker-buttonpane ui-oh-widget-content'>" + (isRTL ? controls : "") +
+				(this._isInRange(inst, gotoDate) ? "<button type='button' class='ui-oh-datepicker-current ui-oh-state-default ui-oh-priority-secondary ui-oh-corner-all' data-handler='today' data-event='click'" +
 					">" + currentText + "</button>" : "") + (isRTL ? "" : controls) + "</div>" : "";
 
 			firstDay = parseInt(this._get(inst, "firstDay"),10);
@@ -5425,32 +5425,32 @@
 				this.maxRows = 4;
 				for (col = 0; col < numMonths[1]; col++) {
 					selectedDate = this._daylightSavingAdjust(new Date(drawYear, drawMonth, inst.selectedDay));
-					cornerClass = " ui-corner-all";
+					cornerClass = " ui-oh-corner-all";
 					calender = "";
 					if (isMultiMonth) {
-						calender += "<div class='ui-datepicker-group";
+						calender += "<div class='ui-oh-datepicker-group";
 						if (numMonths[1] > 1) {
 							switch (col) {
-								case 0: calender += " ui-datepicker-group-first";
-									cornerClass = " ui-corner-" + (isRTL ? "right" : "left"); break;
-								case numMonths[1]-1: calender += " ui-datepicker-group-last";
-									cornerClass = " ui-corner-" + (isRTL ? "left" : "right"); break;
-								default: calender += " ui-datepicker-group-middle"; cornerClass = ""; break;
+								case 0: calender += " ui-oh-datepicker-group-first";
+									cornerClass = " ui-oh-corner-" + (isRTL ? "right" : "left"); break;
+								case numMonths[1]-1: calender += " ui-oh-datepicker-group-last";
+									cornerClass = " ui-oh-corner-" + (isRTL ? "left" : "right"); break;
+								default: calender += " ui-oh-datepicker-group-middle"; cornerClass = ""; break;
 							}
 						}
 						calender += "'>";
 					}
-					calender += "<div class='ui-datepicker-header ui-widget-header ui-helper-clearfix" + cornerClass + "'>" +
+					calender += "<div class='ui-oh-datepicker-header ui-oh-widget-header ui-oh-helper-clearfix" + cornerClass + "'>" +
 						(/all|left/.test(cornerClass) && row === 0 ? (isRTL ? next : prev) : "") +
 						(/all|right/.test(cornerClass) && row === 0 ? (isRTL ? prev : next) : "") +
 						this._generateMonthYearHeader(inst, drawMonth, drawYear, minDate, maxDate,
 							row > 0 || col > 0, monthNames, monthNamesShort) + // draw month headers
-						"</div><table class='ui-datepicker-calendar'><thead>" +
+						"</div><table class='ui-oh-datepicker-calendar'><thead>" +
 						"<tr>";
-					thead = (showWeek ? "<th class='ui-datepicker-week-col'>" + this._get(inst, "weekHeader") + "</th>" : "");
+					thead = (showWeek ? "<th class='ui-oh-datepicker-week-col'>" + this._get(inst, "weekHeader") + "</th>" : "");
 					for (dow = 0; dow < 7; dow++) { // days of the week
 						day = (dow + firstDay) % 7;
-						thead += "<th scope='col'" + ((dow + firstDay + 6) % 7 >= 5 ? " class='ui-datepicker-week-end'" : "") + ">" +
+						thead += "<th scope='col'" + ((dow + firstDay + 6) % 7 >= 5 ? " class='ui-oh-datepicker-week-end'" : "") + ">" +
 							"<span title='" + dayNames[day] + "'>" + dayNamesMin[day] + "</span></th>";
 					}
 					calender += thead + "</tr></thead><tbody>";
@@ -5465,7 +5465,7 @@
 					printDate = this._daylightSavingAdjust(new Date(drawYear, drawMonth, 1 - leadDays));
 					for (dRow = 0; dRow < numRows; dRow++) { // create date picker rows
 						calender += "<tr>";
-						tbody = (!showWeek ? "" : "<td class='ui-datepicker-week-col'>" +
+						tbody = (!showWeek ? "" : "<td class='ui-oh-datepicker-week-col'>" +
 							this._get(inst, "calculateWeek")(printDate) + "</td>");
 						for (dow = 0; dow < 7; dow++) { // create date picker days
 							daySettings = (beforeShowDay ?
@@ -5474,23 +5474,23 @@
 							unselectable = (otherMonth && !selectOtherMonths) || !daySettings[0] ||
 								(minDate && printDate < minDate) || (maxDate && printDate > maxDate);
 							tbody += "<td class='" +
-								((dow + firstDay + 6) % 7 >= 5 ? " ui-datepicker-week-end" : "") + // highlight weekends
-								(otherMonth ? " ui-datepicker-other-month" : "") + // highlight days from other months
+								((dow + firstDay + 6) % 7 >= 5 ? " ui-oh-datepicker-week-end" : "") + // highlight weekends
+								(otherMonth ? " ui-oh-datepicker-other-month" : "") + // highlight days from other months
 								((printDate.getTime() === selectedDate.getTime() && drawMonth === inst.selectedMonth && inst._keyEvent) || // user pressed key
 								(defaultDate.getTime() === printDate.getTime() && defaultDate.getTime() === selectedDate.getTime()) ?
 									// or defaultDate is current printedDate and defaultDate is selectedDate
 									" " + this._dayOverClass : "") + // highlight selected day
-								(unselectable ? " " + this._unselectableClass + " ui-state-disabled": "") +  // highlight unselectable days
+								(unselectable ? " " + this._unselectableClass + " ui-oh-state-disabled": "") +  // highlight unselectable days
 								(otherMonth && !showOtherMonths ? "" : " " + daySettings[1] + // highlight custom dates
 									(printDate.getTime() === currentDate.getTime() ? " " + this._currentClass : "") + // highlight selected day
-									(printDate.getTime() === today.getTime() ? " ui-datepicker-today" : "")) + "'" + // highlight today (if different)
+									(printDate.getTime() === today.getTime() ? " ui-oh-datepicker-today" : "")) + "'" + // highlight today (if different)
 								((!otherMonth || showOtherMonths) && daySettings[2] ? " title='" + daySettings[2].replace(/'/g, "&#39;") + "'" : "") + // cell title
 								(unselectable ? "" : " data-handler='selectDay' data-event='click' data-month='" + printDate.getMonth() + "' data-year='" + printDate.getFullYear() + "'") + ">" + // actions
 								(otherMonth && !showOtherMonths ? "&#xa0;" : // display for other months
-									(unselectable ? "<span class='ui-state-default'>" + printDate.getDate() + "</span>" : "<a class='ui-state-default" +
-										(printDate.getTime() === today.getTime() ? " ui-state-highlight" : "") +
-										(printDate.getTime() === currentDate.getTime() ? " ui-state-active" : "") + // highlight selected day
-										(otherMonth ? " ui-priority-secondary" : "") + // distinguish dates from other months
+									(unselectable ? "<span class='ui-oh-state-default'>" + printDate.getDate() + "</span>" : "<a class='ui-oh-state-default" +
+										(printDate.getTime() === today.getTime() ? " ui-oh-state-highlight" : "") +
+										(printDate.getTime() === currentDate.getTime() ? " ui-oh-state-active" : "") + // highlight selected day
+										(otherMonth ? " ui-oh-priority-secondary" : "") + // distinguish dates from other months
 										"' href='#'>" + printDate.getDate() + "</a>")) + "</td>"; // display selectable date
 							printDate.setDate(printDate.getDate() + 1);
 							printDate = this._daylightSavingAdjust(printDate);
@@ -5503,7 +5503,7 @@
 						drawYear++;
 					}
 					calender += "</tbody></table>" + (isMultiMonth ? "</div>" +
-						((numMonths[0] > 0 && col === numMonths[1]-1) ? "<div class='ui-datepicker-row-break'></div>" : "") : "");
+						((numMonths[0] > 0 && col === numMonths[1]-1) ? "<div class='ui-oh-datepicker-row-break'></div>" : "") : "");
 					group += calender;
 				}
 				html += group;
@@ -5521,16 +5521,16 @@
 				changeMonth = this._get(inst, "changeMonth"),
 				changeYear = this._get(inst, "changeYear"),
 				showMonthAfterYear = this._get(inst, "showMonthAfterYear"),
-				html = "<div class='ui-datepicker-title'>",
+				html = "<div class='ui-oh-datepicker-title'>",
 				monthHtml = "";
 
 			// month selection
 			if (secondary || !changeMonth) {
-				monthHtml += "<span class='ui-datepicker-month'>" + monthNames[drawMonth] + "</span>";
+				monthHtml += "<span class='ui-oh-datepicker-month'>" + monthNames[drawMonth] + "</span>";
 			} else {
 				inMinYear = (minDate && minDate.getFullYear() === drawYear);
 				inMaxYear = (maxDate && maxDate.getFullYear() === drawYear);
-				monthHtml += "<select class='ui-datepicker-month' data-handler='selectMonth' data-event='change'>";
+				monthHtml += "<select class='ui-oh-datepicker-month' data-handler='selectMonth' data-event='change'>";
 				for ( month = 0; month < 12; month++) {
 					if ((!inMinYear || month >= minDate.getMonth()) && (!inMaxYear || month <= maxDate.getMonth())) {
 						monthHtml += "<option value='" + month + "'" +
@@ -5549,7 +5549,7 @@
 			if ( !inst.yearshtml ) {
 				inst.yearshtml = "";
 				if (secondary || !changeYear) {
-					html += "<span class='ui-datepicker-year'>" + drawYear + "</span>";
+					html += "<span class='ui-oh-datepicker-year'>" + drawYear + "</span>";
 				} else {
 					// determine range of years to display
 					years = this._get(inst, "yearRange").split(":");
@@ -5564,7 +5564,7 @@
 					endYear = Math.max(year, determineYear(years[1] || ""));
 					year = (minDate ? Math.max(year, minDate.getFullYear()) : year);
 					endYear = (maxDate ? Math.min(endYear, maxDate.getFullYear()) : endYear);
-					inst.yearshtml += "<select class='ui-datepicker-year' data-handler='selectYear' data-event='change'>";
+					inst.yearshtml += "<select class='ui-oh-datepicker-year' data-handler='selectYear' data-event='change'>";
 					for (; year <= endYear; year++) {
 						inst.yearshtml += "<option value='" + year + "'" +
 							(year === drawYear ? " selected='selected'" : "") +
@@ -5707,14 +5707,14 @@
  * Global datepicker_instActive, set by _updateDatepicker allows the handlers to find their way back to the active picker.
  */
 	function datepicker_bindHover(dpDiv) {
-		var selector = "button, .ui-datepicker-calendar td a";
+		var selector = "button, .ui-oh-datepicker-calendar td a";
 		return dpDiv.delegate(selector, "mouseout", function() {
-			$(this).removeClass("ui-state-hover");
-			if (this.className.indexOf("ui-datepicker-prev") !== -1) {
-				$(this).removeClass("ui-datepicker-prev-hover");
+			$(this).removeClass("ui-oh-state-hover");
+			if (this.className.indexOf("ui-oh-datepicker-prev") !== -1) {
+				$(this).removeClass("ui-oh-datepicker-prev-hover");
 			}
-			if (this.className.indexOf("ui-datepicker-next") !== -1) {
-				$(this).removeClass("ui-datepicker-next-hover");
+			if (this.className.indexOf("ui-oh-datepicker-next") !== -1) {
+				$(this).removeClass("ui-oh-datepicker-next-hover");
 			}
 		})
 			.delegate( selector, "mouseover", datepicker_handleMouseover );
@@ -5722,13 +5722,13 @@
 
 	function datepicker_handleMouseover() {
 		if (!$.datepicker._isDisabledDatepicker( datepicker_instActive.inline? datepicker_instActive.dpDiv.parent()[0] : datepicker_instActive.input[0])) {
-			$(this).parents(".ui-datepicker-calendar").find("a").removeClass("ui-state-hover");
-			$(this).addClass("ui-state-hover");
-			if (this.className.indexOf("ui-datepicker-prev") !== -1) {
-				$(this).addClass("ui-datepicker-prev-hover");
+			$(this).parents(".ui-oh-datepicker-calendar").find("a").removeClass("ui-oh-state-hover");
+			$(this).addClass("ui-oh-state-hover");
+			if (this.className.indexOf("ui-oh-datepicker-prev") !== -1) {
+				$(this).addClass("ui-oh-datepicker-prev-hover");
 			}
-			if (this.className.indexOf("ui-datepicker-next") !== -1) {
-				$(this).addClass("ui-datepicker-next-hover");
+			if (this.className.indexOf("ui-oh-datepicker-next") !== -1) {
+				$(this).addClass("ui-oh-datepicker-next-hover");
 			}
 		}
 	}
@@ -5843,10 +5843,10 @@
 				this.element[0].style.position = "relative";
 			}
 			if (this.options.addClasses){
-				this.element.addClass("ui-draggable");
+				this.element.addClass("ui-oh-draggable");
 			}
 			if (this.options.disabled){
-				this.element.addClass("ui-draggable-disabled");
+				this.element.addClass("ui-oh-draggable-disabled");
 			}
 			this._setHandleClassName();
 
@@ -5862,11 +5862,11 @@
 		},
 
 		_destroy: function() {
-			if ( ( this.helper || this.element ).is( ".ui-draggable-dragging" ) ) {
+			if ( ( this.helper || this.element ).is( ".ui-oh-draggable-dragging" ) ) {
 				this.destroyOnClear = true;
 				return;
 			}
-			this.element.removeClass( "ui-draggable ui-draggable-dragging ui-draggable-disabled" );
+			this.element.removeClass( "ui-oh-draggable ui-oh-draggable-dragging ui-oh-draggable-disabled" );
 			this._removeHandleClassName();
 			this._mouseDestroy();
 		},
@@ -5888,7 +5888,7 @@
 			} catch ( error ) {}
 
 			// among others, prevent a drag on a resizable-handle
-			if (this.helper || o.disabled || $(event.target).closest(".ui-resizable-handle").length > 0) {
+			if (this.helper || o.disabled || $(event.target).closest(".ui-oh-resizable-handle").length > 0) {
 				return false;
 			}
 
@@ -5899,7 +5899,7 @@
 			}
 
 			$(o.iframeFix === true ? "iframe" : o.iframeFix).each(function() {
-				$("<div class='ui-draggable-iframeFix' style='background: #fff;'></div>")
+				$("<div class='ui-oh-draggable-iframeFix' style='background: #fff;'></div>")
 					.css({
 						width: this.offsetWidth + "px", height: this.offsetHeight + "px",
 						position: "absolute", opacity: "0.001", zIndex: 1000
@@ -5919,7 +5919,7 @@
 			//Create and append the visible helper
 			this.helper = this._createHelper(event);
 
-			this.helper.addClass("ui-draggable-dragging");
+			this.helper.addClass("ui-oh-draggable-dragging");
 
 			//Cache the helper size
 			this._cacheHelperProportions();
@@ -6059,7 +6059,7 @@
 
 		_mouseUp: function(event) {
 			//Remove frame helpers
-			$("div.ui-draggable-iframeFix").each(function() {
+			$("div.ui-oh-draggable-iframeFix").each(function() {
 				this.parentNode.removeChild(this);
 			});
 
@@ -6076,7 +6076,7 @@
 
 		cancel: function() {
 
-			if (this.helper.is(".ui-draggable-dragging")) {
+			if (this.helper.is(".ui-oh-draggable-dragging")) {
 				this._mouseUp({});
 			} else {
 				this._clear();
@@ -6095,11 +6095,11 @@
 		_setHandleClassName: function() {
 			this.handleElement = this.options.handle ?
 				this.element.find( this.options.handle ) : this.element;
-			this.handleElement.addClass( "ui-draggable-handle" );
+			this.handleElement.addClass( "ui-oh-draggable-handle" );
 		},
 
 		_removeHandleClassName: function() {
-			this.handleElement.removeClass( "ui-draggable-handle" );
+			this.handleElement.removeClass( "ui-oh-draggable-handle" );
 		},
 
 		_createHelper: function(event) {
@@ -6375,7 +6375,7 @@
 		},
 
 		_clear: function() {
-			this.helper.removeClass("ui-draggable-dragging");
+			this.helper.removeClass("ui-oh-draggable-dragging");
 			if (this.helper[0] !== this.element[0] && !this.cancelHelperRemoval) {
 				this.helper.remove();
 			}
@@ -6506,7 +6506,7 @@
 						//Now we fake the start of dragging for the sortable instance,
 						//by cloning the list group item, appending it to the sortable and using it as inst.currentItem
 						//We can then fire the start event of the sortable with our passed browser event, and our own helper (so it doesn't create a new one)
-						this.instance.currentItem = $(that).clone().removeAttr("id").appendTo(this.instance.element).data("ui-sortable-item", true);
+						this.instance.currentItem = $(that).clone().removeAttr("id").appendTo(this.instance.element).data("ui-oh-sortable-item", true);
 						this.instance.options._helper = this.instance.options.helper; //Store helper option to later restore it
 						this.instance.options.helper = function() { return ui.helper[0]; };
 
@@ -6671,7 +6671,7 @@
 
 			i.snapElements = [];
 
-			$(o.snap.constructor !== String ? ( o.snap.items || ":data(ui-draggable)" ) : o.snap).each(function() {
+			$(o.snap.constructor !== String ? ( o.snap.items || ":data(ui-oh-draggable)" ) : o.snap).each(function() {
 				var $t = $(this),
 					$o = $t.offset();
 				if (this !== i.element[0]) {
@@ -6872,21 +6872,21 @@
 			var n, i, handle, axis, hname,
 				that = this,
 				o = this.options;
-			this.element.addClass("ui-resizable");
+			this.element.addClass("ui-oh-resizable");
 
 			$.extend(this, {
 				_aspectRatio: !!(o.aspectRatio),
 				aspectRatio: o.aspectRatio,
 				originalElement: this.element,
 				_proportionallyResizeElements: [],
-				_helper: o.helper || o.ghost || o.animate ? o.helper || "ui-resizable-helper" : null
+				_helper: o.helper || o.ghost || o.animate ? o.helper || "ui-oh-resizable-helper" : null
 			});
 
 			// Wrap the element if it cannot hold child nodes
 			if (this.element[0].nodeName.match(/canvas|textarea|input|select|button|img/i)) {
 
 				this.element.wrap(
-					$("<div class='ui-wrapper' style='overflow: hidden;'></div>").css({
+					$("<div class='ui-oh-wrapper' style='overflow: hidden;'></div>").css({
 						position: this.element.css("position"),
 						width: this.element.outerWidth(),
 						height: this.element.outerHeight(),
@@ -6896,7 +6896,7 @@
 				);
 
 				this.element = this.element.parent().data(
-					"ui-resizable", this.element.resizable( "instance" )
+					"ui-oh-resizable", this.element.resizable( "instance" )
 				);
 
 				this.elementIsWrapper = true;
@@ -6932,16 +6932,16 @@
 			}
 
 			this.handles = o.handles ||
-				( !$(".ui-resizable-handle", this.element).length ?
+				( !$(".ui-oh-resizable-handle", this.element).length ?
 					"e,s,se" : {
-						n: ".ui-resizable-n",
-						e: ".ui-resizable-e",
-						s: ".ui-resizable-s",
-						w: ".ui-resizable-w",
-						se: ".ui-resizable-se",
-						sw: ".ui-resizable-sw",
-						ne: ".ui-resizable-ne",
-						nw: ".ui-resizable-nw"
+						n: ".ui-oh-resizable-n",
+						e: ".ui-oh-resizable-e",
+						s: ".ui-oh-resizable-s",
+						w: ".ui-oh-resizable-w",
+						se: ".ui-oh-resizable-se",
+						sw: ".ui-oh-resizable-sw",
+						ne: ".ui-oh-resizable-ne",
+						nw: ".ui-oh-resizable-nw"
 					} );
 
 			if (this.handles.constructor === String) {
@@ -6956,17 +6956,17 @@
 				for (i = 0; i < n.length; i++) {
 
 					handle = $.trim(n[i]);
-					hname = "ui-resizable-" + handle;
-					axis = $("<div class='ui-resizable-handle " + hname + "'></div>");
+					hname = "ui-oh-resizable-" + handle;
+					axis = $("<div class='ui-oh-resizable-handle " + hname + "'></div>");
 
 					axis.css({ zIndex: o.zIndex });
 
 					// TODO : What's going on here?
 					if ("se" === handle) {
-						axis.addClass("ui-icon ui-icon-gripsmall-diagonal-se");
+						axis.addClass("ui-oh-icon ui-oh-icon-gripsmall-diagonal-se");
 					}
 
-					this.handles[handle] = ".ui-resizable-" + handle;
+					this.handles[handle] = ".ui-oh-resizable-" + handle;
 					this.element.append(axis);
 				}
 
@@ -7011,13 +7011,13 @@
 			// TODO: make renderAxis a prototype function
 			this._renderAxis(this.element);
 
-			this._handles = $(".ui-resizable-handle", this.element)
+			this._handles = $(".ui-oh-resizable-handle", this.element)
 				.disableSelection();
 
 			this._handles.mouseover(function() {
 				if (!that.resizing) {
 					if (this.className) {
-						axis = this.className.match(/ui-resizable-(se|sw|ne|nw|n|e|s|w)/i);
+						axis = this.className.match(/ui-oh-resizable-(se|sw|ne|nw|n|e|s|w)/i);
 					}
 					that.axis = axis && axis[1] ? axis[1] : "se";
 				}
@@ -7026,12 +7026,12 @@
 			if (o.autoHide) {
 				this._handles.hide();
 				$(this.element)
-					.addClass("ui-resizable-autohide")
+					.addClass("ui-oh-resizable-autohide")
 					.mouseenter(function() {
 						if (o.disabled) {
 							return;
 						}
-						$(this).removeClass("ui-resizable-autohide");
+						$(this).removeClass("ui-oh-resizable-autohide");
 						that._handles.show();
 					})
 					.mouseleave(function() {
@@ -7039,7 +7039,7 @@
 							return;
 						}
 						if (!that.resizing) {
-							$(this).addClass("ui-resizable-autohide");
+							$(this).addClass("ui-oh-resizable-autohide");
 							that._handles.hide();
 						}
 					});
@@ -7056,11 +7056,11 @@
 			var wrapper,
 				_destroy = function(exp) {
 					$(exp)
-						.removeClass("ui-resizable ui-resizable-disabled ui-resizable-resizing")
+						.removeClass("ui-oh-resizable ui-oh-resizable-disabled ui-oh-resizable-resizing")
 						.removeData("resizable")
-						.removeData("ui-resizable")
+						.removeData("ui-oh-resizable")
 						.unbind(".resizable")
-						.find(".ui-resizable-handle")
+						.find(".ui-oh-resizable-handle")
 						.remove();
 				};
 
@@ -7147,10 +7147,10 @@
 				o.aspectRatio :
 				((this.originalSize.width / this.originalSize.height) || 1);
 
-			cursor = $(".ui-resizable-" + this.axis).css("cursor");
+			cursor = $(".ui-oh-resizable-" + this.axis).css("cursor");
 			$("body").css("cursor", cursor === "auto" ? this.axis + "-resize" : cursor);
 
-			el.addClass("ui-resizable-resizing");
+			el.addClass("ui-oh-resizable-resizing");
 			this._propagate("start", event);
 			return true;
 		},
@@ -7234,7 +7234,7 @@
 
 			$("body").css("cursor", "auto");
 
-			this.element.removeClass("ui-resizable-resizing");
+			this.element.removeClass("ui-oh-resizable-resizing");
 
 			this._propagate("stop", event);
 
@@ -7772,7 +7772,7 @@
 				_store = function(exp) {
 					$(exp).each(function() {
 						var el = $(this);
-						el.data("ui-resizable-alsoresize", {
+						el.data("ui-oh-resizable-alsoresize", {
 							width: parseInt(el.width(), 10), height: parseInt(el.height(), 10),
 							left: parseInt(el.css("left"), 10), top: parseInt(el.css("top"), 10)
 						});
@@ -7807,7 +7807,7 @@
 
 				_alsoResize = function(exp, c) {
 					$(exp).each(function() {
-						var el = $(this), start = $(this).data("ui-resizable-alsoresize"), style = {},
+						var el = $(this), start = $(this).data("ui-oh-resizable-alsoresize"), style = {},
 							css = c && c.length ?
 								c :
 								el.parents(ui.originalElement[0]).length ?
@@ -7857,7 +7857,7 @@
 					left: 0,
 					top: 0
 				})
-				.addClass("ui-resizable-ghost")
+				.addClass("ui-oh-resizable-ghost")
 				.addClass(typeof o.ghost === "string" ? o.ghost : "");
 
 			that.ghost.appendTo(that.helper);
@@ -8058,7 +8058,7 @@
 			this.element
 				.show()
 				.removeAttr( "title" )
-				.addClass( "ui-dialog-content ui-widget-content" )
+				.addClass( "ui-oh-dialog-content ui-oh-widget-content" )
 				.appendTo( this.uiDialog );
 
 			this._createTitlebar();
@@ -8098,7 +8098,7 @@
 
 			this.element
 				.removeUniqueId()
-				.removeClass( "ui-dialog-content ui-widget-content" )
+				.removeClass( "ui-oh-dialog-content ui-oh-widget-content" )
 				.css( this.originalCss )
 				// Without detaching first, the following becomes really slow
 				.detach();
@@ -8172,7 +8172,7 @@
 
 		_moveToTop: function( event, silent ) {
 			var moved = false,
-				zIndicies = this.uiDialog.siblings( ".ui-front:visible" ).map(function() {
+				zIndicies = this.uiDialog.siblings( ".ui-oh-front:visible" ).map(function() {
 					return +$( this ).css( "z-index" );
 				}).get(),
 				zIndexMax = Math.max.apply( null, zIndicies );
@@ -8271,7 +8271,7 @@
 
 		_createWrapper: function() {
 			this.uiDialog = $("<div>")
-				.addClass( "ui-dialog ui-widget ui-widget-content ui-corner-all ui-front " +
+				.addClass( "ui-oh-dialog ui-oh-widget ui-oh-widget-content ui-oh-corner-all ui-oh-front " +
 					this.options.dialogClass )
 				.hide()
 				.attr({
@@ -8331,14 +8331,14 @@
 			var uiDialogTitle;
 
 			this.uiDialogTitlebar = $( "<div>" )
-				.addClass( "ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" )
+				.addClass( "ui-oh-dialog-titlebar ui-oh-widget-header ui-oh-corner-all ui-oh-helper-clearfix" )
 				.prependTo( this.uiDialog );
 			this._on( this.uiDialogTitlebar, {
 				mousedown: function( event ) {
 					// Don't prevent click on close button (#8838)
 					// Focusing a dialog that is partially scrolled out of view
 					// causes the browser to scroll it into view, preventing the click event
-					if ( !$( event.target ).closest( ".ui-dialog-titlebar-close" ) ) {
+					if ( !$( event.target ).closest( ".ui-oh-dialog-titlebar-close" ) ) {
 						// Dialog isn't getting focus when dragging (#8063)
 						this.uiDialog.focus();
 					}
@@ -8352,11 +8352,11 @@
 				.button({
 					label: this.options.closeText,
 					icons: {
-						primary: "ui-icon-closethick"
+						primary: "ui-oh-icon-closethick"
 					},
 					text: false
 				})
-				.addClass( "ui-dialog-titlebar-close" )
+				.addClass( "ui-oh-dialog-titlebar-close" )
 				.appendTo( this.uiDialogTitlebar );
 			this._on( this.uiDialogTitlebarClose, {
 				click: function( event ) {
@@ -8367,7 +8367,7 @@
 
 			uiDialogTitle = $( "<span>" )
 				.uniqueId()
-				.addClass( "ui-dialog-title" )
+				.addClass( "ui-oh-dialog-title" )
 				.prependTo( this.uiDialogTitlebar );
 			this._title( uiDialogTitle );
 
@@ -8385,10 +8385,10 @@
 
 		_createButtonPane: function() {
 			this.uiDialogButtonPane = $( "<div>" )
-				.addClass( "ui-dialog-buttonpane ui-widget-content ui-helper-clearfix" );
+				.addClass( "ui-oh-dialog-buttonpane ui-oh-widget-content ui-oh-helper-clearfix" );
 
 			this.uiButtonSet = $( "<div>" )
-				.addClass( "ui-dialog-buttonset" )
+				.addClass( "ui-oh-dialog-buttonset" )
 				.appendTo( this.uiDialogButtonPane );
 
 			this._createButtons();
@@ -8403,7 +8403,7 @@
 			this.uiButtonSet.empty();
 
 			if ( $.isEmptyObject( buttons ) || ($.isArray( buttons ) && !buttons.length) ) {
-				this.uiDialog.removeClass( "ui-dialog-buttons" );
+				this.uiDialog.removeClass( "ui-oh-dialog-buttons" );
 				return;
 			}
 
@@ -8429,7 +8429,7 @@
 					.button( buttonOptions )
 					.appendTo( that.uiButtonSet );
 			});
-			this.uiDialog.addClass( "ui-dialog-buttons" );
+			this.uiDialog.addClass( "ui-oh-dialog-buttons" );
 			this.uiDialogButtonPane.appendTo( this.uiDialog );
 		},
 
@@ -8445,11 +8445,11 @@
 			}
 
 			this.uiDialog.draggable({
-				cancel: ".ui-dialog-content, .ui-dialog-titlebar-close",
-				handle: ".ui-dialog-titlebar",
+				cancel: ".ui-oh-dialog-content, .ui-oh-dialog-titlebar-close",
+				handle: ".ui-oh-dialog-titlebar",
 				containment: "document",
 				start: function( event, ui ) {
-					$( this ).addClass( "ui-dialog-dragging" );
+					$( this ).addClass( "ui-oh-dialog-dragging" );
 					that._blockFrames();
 					that._trigger( "dragStart", event, filteredUi( ui ) );
 				},
@@ -8466,7 +8466,7 @@
 							"top" + (top >= 0 ? "+" : "") + top,
 						of: that.window
 					};
-					$( this ).removeClass( "ui-dialog-dragging" );
+					$( this ).removeClass( "ui-oh-dialog-dragging" );
 					that._unblockFrames();
 					that._trigger( "dragStop", event, filteredUi( ui ) );
 				}
@@ -8477,7 +8477,7 @@
 			var that = this,
 				options = this.options,
 				handles = options.resizable,
-				// .ui-resizable has position: relative defined in the stylesheet
+				// .ui-oh-resizable has position: relative defined in the stylesheet
 				// but dialogs have to use absolute or fixed positioning
 				position = this.uiDialog.css("position"),
 				resizeHandles = typeof handles === "string" ?
@@ -8494,7 +8494,7 @@
 			}
 
 			this.uiDialog.resizable({
-				cancel: ".ui-dialog-content",
+				cancel: ".ui-oh-dialog-content",
 				containment: "document",
 				alsoResize: this.element,
 				maxWidth: options.maxWidth,
@@ -8503,7 +8503,7 @@
 				minHeight: this._minHeight(),
 				handles: resizeHandles,
 				start: function( event, ui ) {
-					$( this ).addClass( "ui-dialog-resizing" );
+					$( this ).addClass( "ui-oh-dialog-resizing" );
 					that._blockFrames();
 					that._trigger( "resizeStart", event, filteredUi( ui ) );
 				},
@@ -8523,7 +8523,7 @@
 							"top" + (top >= 0 ? "+" : "") + top,
 						of: that.window
 					};
-					$( this ).removeClass( "ui-dialog-resizing" );
+					$( this ).removeClass( "ui-oh-dialog-resizing" );
 					that._unblockFrames();
 					that._trigger( "resizeStop", event, filteredUi( ui ) );
 				}
@@ -8554,10 +8554,10 @@
 		},
 
 		_trackingInstances: function() {
-			var instances = this.document.data( "ui-dialog-instances" );
+			var instances = this.document.data( "ui-oh-dialog-instances" );
 			if ( !instances ) {
 				instances = [];
-				this.document.data( "ui-dialog-instances", instances );
+				this.document.data( "ui-oh-dialog-instances", instances );
 			}
 			return instances;
 		},
@@ -8602,7 +8602,7 @@
 				this._size();
 				this._position();
 			}
-			if ( this.uiDialog.is( ":data(ui-resizable)" ) ) {
+			if ( this.uiDialog.is( ":data(ui-oh-resizable)" ) ) {
 				this.uiDialog.resizable( "option", resizableOptions );
 			}
 		},
@@ -8639,7 +8639,7 @@
 			}
 
 			if ( key === "draggable" ) {
-				isDraggable = uiDialog.is( ":data(ui-draggable)" );
+				isDraggable = uiDialog.is( ":data(ui-oh-draggable)" );
 				if ( isDraggable && !value ) {
 					uiDialog.draggable( "destroy" );
 				}
@@ -8655,7 +8655,7 @@
 
 			if ( key === "resizable" ) {
 				// currently resizable, becoming non-resizable
-				isResizable = uiDialog.is( ":data(ui-resizable)" );
+				isResizable = uiDialog.is( ":data(ui-oh-resizable)" );
 				if ( isResizable && !value ) {
 					uiDialog.resizable( "destroy" );
 				}
@@ -8672,12 +8672,12 @@
 			}
 
 			if ( key === "title" ) {
-				this._title( this.uiDialogTitlebar.find( ".ui-dialog-title" ) );
+				this._title( this.uiDialogTitlebar.find( ".ui-oh-dialog-title" ) );
 			}
 		},
 
 		_size: function() {
-			// If the user has resized the dialog, the .ui-dialog and .ui-dialog-content
+			// If the user has resized the dialog, the .ui-oh-dialog and .ui-oh-dialog-content
 			// divs will both have width and height set, so we need to reset them
 			var nonContentHeight, minContentHeight, maxContentHeight,
 				options = this.options;
@@ -8716,7 +8716,7 @@
 				this.element.height( Math.max( 0, options.height - nonContentHeight ) );
 			}
 
-			if ( this.uiDialog.is( ":data(ui-resizable)" ) ) {
+			if ( this.uiDialog.is( ":data(ui-oh-resizable)" ) ) {
 				this.uiDialog.resizable( "option", "minHeight", this._minHeight() );
 			}
 		},
@@ -8744,13 +8744,13 @@
 		},
 
 		_allowInteraction: function( event ) {
-			if ( $( event.target ).closest( ".ui-dialog" ).length ) {
+			if ( $( event.target ).closest( ".ui-oh-dialog" ).length ) {
 				return true;
 			}
 
 			// TODO: Remove hack when datepicker implements
-			// the .ui-front logic (#8989)
-			return !!$( event.target ).closest( ".ui-datepicker" ).length;
+			// the .ui-oh-front logic (#8989)
+			return !!$( event.target ).closest( ".ui-oh-datepicker" ).length;
 		},
 
 		_createOverlay: function() {
@@ -8765,7 +8765,7 @@
 				isOpening = false;
 			});
 
-			if ( !this.document.data( "ui-dialog-overlays" ) ) {
+			if ( !this.document.data( "ui-oh-dialog-overlays" ) ) {
 
 				// Prevent use of anchors and inputs
 				// Using _on() for an event handler shared across many instances is
@@ -8785,13 +8785,13 @@
 			}
 
 			this.overlay = $( "<div>" )
-				.addClass( "ui-widget-overlay ui-front" )
+				.addClass( "ui-oh-widget-overlay ui-oh-front" )
 				.appendTo( this._appendTo() );
 			this._on( this.overlay, {
 				mousedown: "_keepFocus"
 			});
-			this.document.data( "ui-dialog-overlays",
-				(this.document.data( "ui-dialog-overlays" ) || 0) + 1 );
+			this.document.data( "ui-oh-dialog-overlays",
+				(this.document.data( "ui-oh-dialog-overlays" ) || 0) + 1 );
 		},
 
 		_destroyOverlay: function() {
@@ -8800,14 +8800,14 @@
 			}
 
 			if ( this.overlay ) {
-				var overlays = this.document.data( "ui-dialog-overlays" ) - 1;
+				var overlays = this.document.data( "ui-oh-dialog-overlays" ) - 1;
 
 				if ( !overlays ) {
 					this.document
 						.unbind( "focusin" )
-						.removeData( "ui-dialog-overlays" );
+						.removeData( "ui-oh-dialog-overlays" );
 				} else {
-					this.document.data( "ui-dialog-overlays", overlays );
+					this.document.data( "ui-oh-dialog-overlays", overlays );
 				}
 
 				this.overlay.remove();
@@ -8878,7 +8878,7 @@
 
 			this._addToManager( o.scope );
 
-			o.addClasses && this.element.addClass( "ui-droppable" );
+			o.addClasses && this.element.addClass( "ui-oh-droppable" );
 
 		},
 
@@ -8902,7 +8902,7 @@
 
 			this._splice( drop );
 
-			this.element.removeClass( "ui-droppable ui-droppable-disabled" );
+			this.element.removeClass( "ui-oh-droppable ui-oh-droppable-disabled" );
 		},
 
 		_setOption: function( key, value ) {
@@ -8987,7 +8987,7 @@
 				return false;
 			}
 
-			this.element.find( ":data(ui-droppable)" ).not( ".ui-draggable-dragging" ).each(function() {
+			this.element.find( ":data(ui-oh-droppable)" ).not( ".ui-oh-draggable-dragging" ).each(function() {
 				var inst = $( this ).droppable( "instance" );
 				if (
 					inst.options.greedy &&
@@ -9084,7 +9084,7 @@
 			var i, j,
 				m = $.ui.ddmanager.droppables[ t.options.scope ] || [],
 				type = event ? event.type : null, // workaround for #2317
-				list = ( t.currentItem || t.element ).find( ":data(ui-droppable)" ).addBack();
+				list = ( t.currentItem || t.element ).find( ":data(ui-oh-droppable)" ).addBack();
 
 			droppablesLoop: for ( i = 0; i < m.length; i++ ) {
 
@@ -9172,7 +9172,7 @@
 				if ( this.options.greedy ) {
 					// find droppable parents with same scope
 					scope = this.options.scope;
-					parent = this.element.parents( ":data(ui-droppable)" ).filter(function() {
+					parent = this.element.parents( ":data(ui-oh-droppable)" ).filter(function() {
 						return $( this ).droppable( "instance" ).options.scope === scope;
 					});
 
@@ -9226,7 +9226,7 @@
  */
 
 
-	var dataSpace = "ui-effects-",
+	var dataSpace = "ui-oh-effects-",
 
 		// Create a local jQuery because jQuery Color relies on it and the
 		// global may not exist with AMD and a custom build (#10199)
@@ -10173,7 +10173,7 @@
 			createWrapper: function( element ) {
 
 				// if the element is already wrapped, return it
-				if ( element.parent().is( ".ui-effects-wrapper" )) {
+				if ( element.parent().is( ".ui-oh-effects-wrapper" )) {
 					return element.parent();
 				}
 
@@ -10184,7 +10184,7 @@
 						"float": element.css( "float" )
 					},
 					wrapper = $( "<div></div>" )
-						.addClass( "ui-effects-wrapper" )
+						.addClass( "ui-oh-effects-wrapper" )
 						.css({
 							fontSize: "100%",
 							background: "transparent",
@@ -10248,7 +10248,7 @@
 			removeWrapper: function( element ) {
 				var active = document.activeElement;
 
-				if ( element.parent().is( ".ui-effects-wrapper" ) ) {
+				if ( element.parent().is( ".ui-oh-effects-wrapper" ) ) {
 					element.parent().replaceWith( element );
 
 					// Fixes #7595 - Elements lose focus when wrapped.
@@ -10534,7 +10534,7 @@
 			wrapper, distance, margin;
 
 		// if already wrapped, the wrapper's properties are my property. #6245
-		if ( el.parent().is( ".ui-effects-wrapper" ) ) {
+		if ( el.parent().is( ".ui-oh-effects-wrapper" ) ) {
 			$.effects.save( el.parent(), props );
 		} else {
 			$.effects.save( el, props );
@@ -10882,7 +10882,7 @@
 					// select the wrapper - make it overflow: hidden and absolute positioned based on
 					// where the original was located +left and +top equal to the size of pieces
 					.parent()
-					.addClass( "ui-effects-explode" )
+					.addClass( "ui-oh-effects-explode" )
 					.css({
 						position: "absolute",
 						overflow: "hidden",
@@ -11619,7 +11619,7 @@
 				width: target.innerWidth()
 			},
 			startPosition = elem.offset(),
-			transfer = $( "<div class='ui-effects-transfer'></div>" )
+			transfer = $( "<div class='ui-oh-effects-transfer'></div>" )
 				.appendTo( document.body )
 				.addClass( o.className )
 				.css({
@@ -11665,7 +11665,7 @@
 			this.oldValue = this.options.value = this._constrainedValue();
 
 			this.element
-				.addClass( "ui-progressbar ui-widget ui-widget-content ui-corner-all" )
+				.addClass( "ui-oh-progressbar ui-oh-widget ui-oh-widget-content ui-oh-corner-all" )
 				.attr({
 					// Only set static values, aria-valuenow and aria-valuemax are
 					// set inside _refreshValue()
@@ -11673,7 +11673,7 @@
 					"aria-valuemin": this.min
 				});
 
-			this.valueDiv = $( "<div class='ui-progressbar-value ui-widget-header ui-corner-left'></div>" )
+			this.valueDiv = $( "<div class='ui-oh-progressbar-value ui-oh-widget-header ui-oh-corner-left'></div>" )
 				.appendTo( this.element );
 
 			this._refreshValue();
@@ -11681,7 +11681,7 @@
 
 		_destroy: function() {
 			this.element
-				.removeClass( "ui-progressbar ui-widget ui-widget-content ui-corner-all" )
+				.removeClass( "ui-oh-progressbar ui-oh-widget ui-oh-widget-content ui-oh-corner-all" )
 				.removeAttr( "role" )
 				.removeAttr( "aria-valuemin" )
 				.removeAttr( "aria-valuemax" )
@@ -11733,7 +11733,7 @@
 			}
 			if ( key === "disabled" ) {
 				this.element
-					.toggleClass( "ui-state-disabled", !!value )
+					.toggleClass( "ui-oh-state-disabled", !!value )
 					.attr( "aria-disabled", value );
 			}
 			this._super( key, value );
@@ -11749,15 +11749,15 @@
 
 			this.valueDiv
 				.toggle( this.indeterminate || value > this.min )
-				.toggleClass( "ui-corner-right", value === this.options.max )
+				.toggleClass( "ui-oh-corner-right", value === this.options.max )
 				.width( percentage.toFixed(0) + "%" );
 
-			this.element.toggleClass( "ui-progressbar-indeterminate", this.indeterminate );
+			this.element.toggleClass( "ui-oh-progressbar-indeterminate", this.indeterminate );
 
 			if ( this.indeterminate ) {
 				this.element.removeAttr( "aria-valuenow" );
 				if ( !this.overlayDiv ) {
-					this.overlayDiv = $( "<div class='ui-progressbar-overlay'></div>" ).appendTo( this.valueDiv );
+					this.overlayDiv = $( "<div class='ui-oh-progressbar-overlay'></div>" ).appendTo( this.valueDiv );
 				}
 			} else {
 				this.element.attr({
@@ -11814,14 +11814,14 @@
 			var selectees,
 				that = this;
 
-			this.element.addClass("ui-selectable");
+			this.element.addClass("ui-oh-selectable");
 
 			this.dragged = false;
 
 			// cache selectee children based on filter
 			this.refresh = function() {
 				selectees = $(that.options.filter, that.element[0]);
-				selectees.addClass("ui-selectee");
+				selectees.addClass("ui-oh-selectee");
 				selectees.each(function() {
 					var $this = $(this),
 						pos = $this.offset();
@@ -11833,27 +11833,27 @@
 						right: pos.left + $this.outerWidth(),
 						bottom: pos.top + $this.outerHeight(),
 						startselected: false,
-						selected: $this.hasClass("ui-selected"),
-						selecting: $this.hasClass("ui-selecting"),
-						unselecting: $this.hasClass("ui-unselecting")
+						selected: $this.hasClass("ui-oh-selected"),
+						selecting: $this.hasClass("ui-oh-selecting"),
+						unselecting: $this.hasClass("ui-oh-unselecting")
 					});
 				});
 			};
 			this.refresh();
 
-			this.selectees = selectees.addClass("ui-selectee");
+			this.selectees = selectees.addClass("ui-oh-selectee");
 
 			this._mouseInit();
 
-			this.helper = $("<div class='ui-selectable-helper'></div>");
+			this.helper = $("<div class='ui-oh-selectable-helper'></div>");
 		},
 
 		_destroy: function() {
 			this.selectees
-				.removeClass("ui-selectee")
+				.removeClass("ui-oh-selectee")
 				.removeData("selectable-item");
 			this.element
-				.removeClass("ui-selectable ui-selectable-disabled");
+				.removeClass("ui-oh-selectable ui-oh-selectable-disabled");
 			this._mouseDestroy();
 		},
 
@@ -11884,13 +11884,13 @@
 				this.refresh();
 			}
 
-			this.selectees.filter(".ui-selected").each(function() {
+			this.selectees.filter(".ui-oh-selected").each(function() {
 				var selectee = $.data(this, "selectable-item");
 				selectee.startselected = true;
 				if (!event.metaKey && !event.ctrlKey) {
-					selectee.$element.removeClass("ui-selected");
+					selectee.$element.removeClass("ui-oh-selected");
 					selectee.selected = false;
-					selectee.$element.addClass("ui-unselecting");
+					selectee.$element.addClass("ui-oh-unselecting");
 					selectee.unselecting = true;
 					// selectable UNSELECTING callback
 					that._trigger("unselecting", event, {
@@ -11903,10 +11903,10 @@
 				var doSelect,
 					selectee = $.data(this, "selectable-item");
 				if (selectee) {
-					doSelect = (!event.metaKey && !event.ctrlKey) || !selectee.$element.hasClass("ui-selected");
+					doSelect = (!event.metaKey && !event.ctrlKey) || !selectee.$element.hasClass("ui-oh-selected");
 					selectee.$element
-						.removeClass(doSelect ? "ui-unselecting" : "ui-selected")
-						.addClass(doSelect ? "ui-selecting" : "ui-unselecting");
+						.removeClass(doSelect ? "ui-oh-unselecting" : "ui-oh-selected")
+						.addClass(doSelect ? "ui-oh-selecting" : "ui-oh-unselecting");
 					selectee.unselecting = !doSelect;
 					selectee.selecting = doSelect;
 					selectee.selected = doSelect;
@@ -11964,15 +11964,15 @@
 				if (hit) {
 					// SELECT
 					if (selectee.selected) {
-						selectee.$element.removeClass("ui-selected");
+						selectee.$element.removeClass("ui-oh-selected");
 						selectee.selected = false;
 					}
 					if (selectee.unselecting) {
-						selectee.$element.removeClass("ui-unselecting");
+						selectee.$element.removeClass("ui-oh-unselecting");
 						selectee.unselecting = false;
 					}
 					if (!selectee.selecting) {
-						selectee.$element.addClass("ui-selecting");
+						selectee.$element.addClass("ui-oh-selecting");
 						selectee.selecting = true;
 						// selectable SELECTING callback
 						that._trigger("selecting", event, {
@@ -11983,15 +11983,15 @@
 					// UNSELECT
 					if (selectee.selecting) {
 						if ((event.metaKey || event.ctrlKey) && selectee.startselected) {
-							selectee.$element.removeClass("ui-selecting");
+							selectee.$element.removeClass("ui-oh-selecting");
 							selectee.selecting = false;
-							selectee.$element.addClass("ui-selected");
+							selectee.$element.addClass("ui-oh-selected");
 							selectee.selected = true;
 						} else {
-							selectee.$element.removeClass("ui-selecting");
+							selectee.$element.removeClass("ui-oh-selecting");
 							selectee.selecting = false;
 							if (selectee.startselected) {
-								selectee.$element.addClass("ui-unselecting");
+								selectee.$element.addClass("ui-oh-unselecting");
 								selectee.unselecting = true;
 							}
 							// selectable UNSELECTING callback
@@ -12002,10 +12002,10 @@
 					}
 					if (selectee.selected) {
 						if (!event.metaKey && !event.ctrlKey && !selectee.startselected) {
-							selectee.$element.removeClass("ui-selected");
+							selectee.$element.removeClass("ui-oh-selected");
 							selectee.selected = false;
 
-							selectee.$element.addClass("ui-unselecting");
+							selectee.$element.addClass("ui-oh-unselecting");
 							selectee.unselecting = true;
 							// selectable UNSELECTING callback
 							that._trigger("unselecting", event, {
@@ -12024,18 +12024,18 @@
 
 			this.dragged = false;
 
-			$(".ui-unselecting", this.element[0]).each(function() {
+			$(".ui-oh-unselecting", this.element[0]).each(function() {
 				var selectee = $.data(this, "selectable-item");
-				selectee.$element.removeClass("ui-unselecting");
+				selectee.$element.removeClass("ui-oh-unselecting");
 				selectee.unselecting = false;
 				selectee.startselected = false;
 				that._trigger("unselected", event, {
 					unselected: selectee.element
 				});
 			});
-			$(".ui-selecting", this.element[0]).each(function() {
+			$(".ui-oh-selecting", this.element[0]).each(function() {
 				var selectee = $.data(this, "selectable-item");
-				selectee.$element.removeClass("ui-selecting").addClass("ui-selected");
+				selectee.$element.removeClass("ui-oh-selecting").addClass("ui-oh-selected");
 				selectee.selecting = false;
 				selectee.selected = true;
 				selectee.startselected = true;
@@ -12072,7 +12072,7 @@
 			appendTo: null,
 			disabled: null,
 			icons: {
-				button: "ui-icon-triangle-1-s"
+				button: "ui-oh-icon-triangle-1-s"
 			},
 			position: {
 				my: "left top",
@@ -12123,7 +12123,7 @@
 
 			// Create button
 			this.button = $( "<span>", {
-				"class": "ui-selectmenu-button ui-widget ui-state-default ui-corner-all",
+				"class": "ui-oh-selectmenu-button ui-oh-widget ui-oh-state-default ui-oh-corner-all",
 				tabindex: tabindex || this.options.disabled ? -1 : 0,
 				id: this.ids.button,
 				role: "combobox",
@@ -12135,12 +12135,12 @@
 				.insertAfter( this.element );
 
 			$( "<span>", {
-				"class": "ui-icon " + this.options.icons.button
+				"class": "ui-oh-icon " + this.options.icons.button
 			})
 				.prependTo( this.button );
 
 			this.buttonText = $( "<span>", {
-				"class": "ui-selectmenu-text"
+				"class": "ui-oh-selectmenu-text"
 			})
 				.appendTo( this.button );
 
@@ -12172,7 +12172,7 @@
 
 			// Wrap menu
 			this.menuWrap = $( "<div>", {
-				"class": "ui-selectmenu-menu ui-front"
+				"class": "ui-oh-selectmenu-menu ui-oh-front"
 			})
 				.append( this.menu )
 				.appendTo( this._appendTo() );
@@ -12183,10 +12183,10 @@
 					role: "listbox",
 					select: function( event, ui ) {
 						event.preventDefault();
-						that._select( ui.item.data( "ui-selectmenu-item" ), event );
+						that._select( ui.item.data( "ui-oh-selectmenu-item" ), event );
 					},
 					focus: function( event, ui ) {
-						var item = ui.item.data( "ui-selectmenu-item" );
+						var item = ui.item.data( "ui-oh-selectmenu-item" );
 
 						// Prevent inital focus from firing and check if its a newly focused item
 						if ( that.focusIndex != null && item.index !== that.focusIndex ) {
@@ -12205,8 +12205,8 @@
 
 			// Adjust menu styles to dropdown
 			this.menu
-				.addClass( "ui-corner-bottom" )
-				.removeClass( "ui-corner-all" );
+				.addClass( "ui-oh-corner-bottom" )
+				.removeClass( "ui-oh-corner-all" );
 
 			// Don't close the menu on mouseleave
 			this.menuInstance._off( this.menu, "mouseleave" );
@@ -12244,13 +12244,13 @@
 			this._renderMenu( this.menu, this.items );
 
 			this.menuInstance.refresh();
-			this.menuItems = this.menu.find( "li" ).not( ".ui-selectmenu-optgroup" );
+			this.menuItems = this.menu.find( "li" ).not( ".ui-oh-selectmenu-optgroup" );
 
 			item = this._getSelectedItem();
 
 			// Update the menu to have the correct item focused
 			this.menuInstance.focus( null, item );
-			this._setAria( item.data( "ui-selectmenu-item" ) );
+			this._setAria( item.data( "ui-oh-selectmenu-item" ) );
 
 			// Set disabled state
 			this._setOption( "disabled", this.element.prop( "disabled" ) );
@@ -12267,7 +12267,7 @@
 			} else {
 
 				// Menu clears focus on close, reset focus to selected item
-				this.menu.find( ".ui-state-focus" ).removeClass( "ui-state-focus" );
+				this.menu.find( ".ui-oh-state-focus" ).removeClass( "ui-oh-state-focus" );
 				this.menuInstance.focus( null, this._getSelectedItem() );
 			}
 
@@ -12313,9 +12313,9 @@
 			$.each( items, function( index, item ) {
 				if ( item.optgroup !== currentOptgroup ) {
 					$( "<li>", {
-						"class": "ui-selectmenu-optgroup ui-menu-divider" +
+						"class": "ui-oh-selectmenu-optgroup ui-oh-menu-divider" +
 							( item.element.parent( "optgroup" ).prop( "disabled" ) ?
-								" ui-state-disabled" :
+								" ui-oh-state-disabled" :
 								"" ),
 						text: item.optgroup
 					})
@@ -12329,14 +12329,14 @@
 		},
 
 		_renderItemData: function( ul, item ) {
-			return this._renderItem( ul, item ).data( "ui-selectmenu-item", item );
+			return this._renderItem( ul, item ).data( "ui-oh-selectmenu-item", item );
 		},
 
 		_renderItem: function( ul, item ) {
 			var li = $( "<li>" );
 
 			if ( item.disabled ) {
-				li.addClass( "ui-state-disabled" );
+				li.addClass( "ui-oh-state-disabled" );
 			}
 			this._setText( li, item.label );
 
@@ -12353,13 +12353,13 @@
 
 		_move: function( direction, event ) {
 			var item, next,
-				filter = ".ui-menu-item";
+				filter = ".ui-oh-menu-item";
 
 			if ( this.isOpen ) {
 				item = this.menuItems.eq( this.focusIndex );
 			} else {
 				item = this.menuItems.eq( this.element[ 0 ].selectedIndex );
-				filter += ":not(.ui-state-disabled)";
+				filter += ":not(.ui-oh-state-disabled)";
 			}
 
 			if ( direction === "first" || direction === "last" ) {
@@ -12387,7 +12387,7 @@
 					return;
 				}
 
-				if ( !$( event.target ).closest( ".ui-selectmenu-menu, #" + this.ids.button ).length ) {
+				if ( !$( event.target ).closest( ".ui-oh-selectmenu-menu, #" + this.ids.button ).length ) {
 					this.close( event );
 				}
 			}
@@ -12463,8 +12463,8 @@
 
 		_selectFocusedItem: function( event ) {
 			var item = this.menuItems.eq( this.focusIndex );
-			if ( !item.hasClass( "ui-state-disabled" ) ) {
-				this._select( item.data( "ui-selectmenu-item" ), event );
+			if ( !item.hasClass( "ui-oh-state-disabled" ) ) {
+				this._select( item.data( "ui-oh-selectmenu-item" ), event );
 			}
 		},
 
@@ -12496,7 +12496,7 @@
 
 		_setOption: function( key, value ) {
 			if ( key === "icons" ) {
-				this.button.find( "span.ui-icon" )
+				this.button.find( "span.ui-oh-icon" )
 					.removeClass( this.options.icons.button )
 					.addClass( value.button );
 			}
@@ -12510,7 +12510,7 @@
 			if ( key === "disabled" ) {
 				this.menuInstance.option( "disabled", value );
 				this.button
-					.toggleClass( "ui-state-disabled", value )
+					.toggleClass( "ui-oh-state-disabled", value )
 					.attr( "aria-disabled", value );
 
 				this.element.prop( "disabled", value );
@@ -12537,7 +12537,7 @@
 			}
 
 			if ( !element || !element[ 0 ] ) {
-				element = this.element.closest( ".ui-front" );
+				element = this.element.closest( ".ui-oh-front" );
 			}
 
 			if ( !element.length ) {
@@ -12549,10 +12549,10 @@
 
 		_toggleAttr: function() {
 			this.button
-				.toggleClass( "ui-corner-top", this.isOpen )
-				.toggleClass( "ui-corner-all", !this.isOpen )
+				.toggleClass( "ui-oh-corner-top", this.isOpen )
+				.toggleClass( "ui-oh-corner-all", !this.isOpen )
 				.attr( "aria-expanded", this.isOpen );
-			this.menuWrap.toggleClass( "ui-selectmenu-open", this.isOpen );
+			this.menuWrap.toggleClass( "ui-oh-selectmenu-open", this.isOpen );
 			this.menu.attr( "aria-hidden", !this.isOpen );
 		},
 
@@ -12656,11 +12656,11 @@
 			this._mouseInit();
 
 			this.element
-				.addClass( "ui-slider" +
-					" ui-slider-" + this.orientation +
-					" ui-widget" +
-					" ui-widget-content" +
-					" ui-corner-all");
+				.addClass( "ui-oh-slider" +
+					" ui-oh-slider-" + this.orientation +
+					" ui-oh-widget" +
+					" ui-oh-widget-content" +
+					" ui-oh-corner-all");
 
 			this._refresh();
 			this._setOption( "disabled", this.options.disabled );
@@ -12678,8 +12678,8 @@
 		_createHandles: function() {
 			var i, handleCount,
 				options = this.options,
-				existingHandles = this.element.find( ".ui-slider-handle" ).addClass( "ui-state-default ui-corner-all" ),
-				handle = "<span class='ui-slider-handle ui-state-default ui-corner-all' tabindex='0'></span>",
+				existingHandles = this.element.find( ".ui-oh-slider-handle" ).addClass( "ui-oh-state-default ui-oh-corner-all" ),
+				handle = "<span class='ui-oh-slider-handle ui-oh-state-default ui-oh-corner-all' tabindex='0'></span>",
 				handles = [];
 
 			handleCount = ( options.values && options.values.length ) || 1;
@@ -12698,7 +12698,7 @@
 			this.handle = this.handles.eq( 0 );
 
 			this.handles.each(function( i ) {
-				$( this ).data( "ui-slider-handle-index", i );
+				$( this ).data( "ui-oh-slider-handle-index", i );
 			});
 		},
 
@@ -12721,12 +12721,12 @@
 					this.range = $( "<div></div>" )
 						.appendTo( this.element );
 
-					classes = "ui-slider-range" +
+					classes = "ui-oh-slider-range" +
 						// note: this isn't the most fittingly semantic framework class for this element,
 						// but worked best visually with a variety of themes
-						" ui-widget-header ui-corner-all";
+						" ui-oh-widget-header ui-oh-corner-all";
 				} else {
-					this.range.removeClass( "ui-slider-range-min ui-slider-range-max" )
+					this.range.removeClass( "ui-oh-slider-range-min ui-oh-slider-range-max" )
 					// Handle range switching from true to min/max
 						.css({
 							"left": "",
@@ -12735,7 +12735,7 @@
 				}
 
 				this.range.addClass( classes +
-					( ( options.range === "min" || options.range === "max" ) ? " ui-slider-range-" + options.range : "" ) );
+					( ( options.range === "min" || options.range === "max" ) ? " ui-oh-slider-range-" + options.range : "" ) );
 			} else {
 				if ( this.range ) {
 					this.range.remove();
@@ -12758,12 +12758,12 @@
 			}
 
 			this.element
-				.removeClass( "ui-slider" +
-					" ui-slider-horizontal" +
-					" ui-slider-vertical" +
-					" ui-widget" +
-					" ui-widget-content" +
-					" ui-corner-all" );
+				.removeClass( "ui-oh-slider" +
+					" ui-oh-slider-horizontal" +
+					" ui-oh-slider-vertical" +
+					" ui-oh-widget" +
+					" ui-oh-widget-content" +
+					" ui-oh-corner-all" );
 
 			this._mouseDestroy();
 		},
@@ -12806,11 +12806,11 @@
 			this._handleIndex = index;
 
 			closestHandle
-				.addClass( "ui-state-active" )
+				.addClass( "ui-oh-state-active" )
 				.focus();
 
 			offset = closestHandle.offset();
-			mouseOverHandle = !$( event.target ).parents().addBack().is( ".ui-slider-handle" );
+			mouseOverHandle = !$( event.target ).parents().addBack().is( ".ui-oh-slider-handle" );
 			this._clickOffset = mouseOverHandle ? { left: 0, top: 0 } : {
 				left: event.pageX - offset.left - ( closestHandle.width() / 2 ),
 				top: event.pageY - offset.top -
@@ -12820,7 +12820,7 @@
 					( parseInt( closestHandle.css("marginTop"), 10 ) || 0)
 			};
 
-			if ( !this.handles.hasClass( "ui-state-hover" ) ) {
+			if ( !this.handles.hasClass( "ui-oh-state-hover" ) ) {
 				this._slide( event, index, normValue );
 			}
 			this._animateOff = true;
@@ -12841,7 +12841,7 @@
 		},
 
 		_mouseStop: function( event ) {
-			this.handles.removeClass( "ui-state-active" );
+			this.handles.removeClass( "ui-oh-state-active" );
 			this._mouseSliding = false;
 
 			this._stop( event, this._handleIndex );
@@ -13038,7 +13038,7 @@
 			}
 
 			if ( key === "disabled" ) {
-				this.element.toggleClass( "ui-state-disabled", !!value );
+				this.element.toggleClass( "ui-oh-state-disabled", !!value );
 			}
 
 			this._super( key, value );
@@ -13047,8 +13047,8 @@
 				case "orientation":
 					this._detectOrientation();
 					this.element
-						.removeClass( "ui-slider-horizontal ui-slider-vertical" )
-						.addClass( "ui-slider-" + this.orientation );
+						.removeClass( "ui-oh-slider-horizontal ui-oh-slider-vertical" )
+						.addClass( "ui-oh-slider-" + this.orientation );
 					this._refreshValue();
 
 					// Reset positioning from previous orientation
@@ -13207,7 +13207,7 @@
 		_handleEvents: {
 			keydown: function( event ) {
 				var allowed, curVal, newVal, step,
-					index = $( event.target ).data( "ui-slider-handle-index" );
+					index = $( event.target ).data( "ui-oh-slider-handle-index" );
 
 				switch ( event.keyCode ) {
 					case $.ui.keyCode.HOME:
@@ -13221,7 +13221,7 @@
 						event.preventDefault();
 						if ( !this._keySliding ) {
 							this._keySliding = true;
-							$( event.target ).addClass( "ui-state-active" );
+							$( event.target ).addClass( "ui-oh-state-active" );
 							allowed = this._start( event, index );
 							if ( allowed === false ) {
 								return;
@@ -13272,13 +13272,13 @@
 				this._slide( event, index, newVal );
 			},
 			keyup: function( event ) {
-				var index = $( event.target ).data( "ui-slider-handle-index" );
+				var index = $( event.target ).data( "ui-oh-slider-handle-index" );
 
 				if ( this._keySliding ) {
 					this._keySliding = false;
 					this._stop( event, index );
 					this._change( event, index );
-					$( event.target ).removeClass( "ui-state-active" );
+					$( event.target ).removeClass( "ui-oh-state-active" );
 				}
 			}
 		}
@@ -13352,7 +13352,7 @@
 
 			var o = this.options;
 			this.containerCache = {};
-			this.element.addClass("ui-sortable");
+			this.element.addClass("ui-oh-sortable");
 
 			//Get the items
 			this.refresh();
@@ -13382,19 +13382,19 @@
 		},
 
 		_setHandleClassName: function() {
-			this.element.find( ".ui-sortable-handle" ).removeClass( "ui-sortable-handle" );
+			this.element.find( ".ui-oh-sortable-handle" ).removeClass( "ui-oh-sortable-handle" );
 			$.each( this.items, function() {
 				( this.instance.options.handle ?
 					this.item.find( this.instance.options.handle ) : this.item )
-					.addClass( "ui-sortable-handle" );
+					.addClass( "ui-oh-sortable-handle" );
 			});
 		},
 
 		_destroy: function() {
 			this.element
-				.removeClass( "ui-sortable ui-sortable-disabled" )
-				.find( ".ui-sortable-handle" )
-				.removeClass( "ui-sortable-handle" );
+				.removeClass( "ui-oh-sortable ui-oh-sortable-disabled" )
+				.find( ".ui-oh-sortable-handle" )
+				.removeClass( "ui-oh-sortable-handle" );
 			this._mouseDestroy();
 
 			for ( var i = this.items.length - 1; i >= 0; i-- ) {
@@ -13579,7 +13579,7 @@
 
 			this.dragging = true;
 
-			this.helper.addClass("ui-sortable-helper");
+			this.helper.addClass("ui-oh-sortable-helper");
 			this._mouseDrag(event); //Execute the drag once - this causes the helper not to be visible before getting its correct position
 			return true;
 
@@ -13748,7 +13748,7 @@
 				this._mouseUp({ target: null });
 
 				if(this.options.helper === "original") {
-					this.currentItem.css(this._storedCSS).removeClass("ui-sortable-helper");
+					this.currentItem.css(this._storedCSS).removeClass("ui-oh-sortable-helper");
 				} else {
 					this.currentItem.show();
 				}
@@ -13924,13 +13924,13 @@
 					for ( j = cur.length - 1; j >= 0; j--){
 						inst = $.data(cur[j], this.widgetFullName);
 						if(inst && inst !== this && !inst.options.disabled) {
-							queries.push([$.isFunction(inst.options.items) ? inst.options.items.call(inst.element) : $(inst.options.items, inst.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), inst]);
+							queries.push([$.isFunction(inst.options.items) ? inst.options.items.call(inst.element) : $(inst.options.items, inst.element).not(".ui-oh-sortable-helper").not(".ui-oh-sortable-placeholder"), inst]);
 						}
 					}
 				}
 			}
 
-			queries.push([$.isFunction(this.options.items) ? this.options.items.call(this.element, null, { options: this.options, item: this.currentItem }) : $(this.options.items, this.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), this]);
+			queries.push([$.isFunction(this.options.items) ? this.options.items.call(this.element, null, { options: this.options, item: this.currentItem }) : $(this.options.items, this.element).not(".ui-oh-sortable-helper").not(".ui-oh-sortable-placeholder"), this]);
 
 			function addItems() {
 				items.push( this );
@@ -14057,8 +14057,8 @@
 
 						var nodeName = that.currentItem[0].nodeName.toLowerCase(),
 							element = $( "<" + nodeName + ">", that.document[0] )
-								.addClass(className || that.currentItem[0].className+" ui-sortable-placeholder")
-								.removeClass("ui-sortable-helper");
+								.addClass(className || that.currentItem[0].className+" ui-oh-sortable-placeholder")
+								.removeClass("ui-oh-sortable-helper");
 
 						if ( nodeName === "tr" ) {
 							that.currentItem.children().each(function() {
@@ -14469,7 +14469,7 @@
 						this._storedCSS[i] = "";
 					}
 				}
-				this.currentItem.css(this._storedCSS).removeClass("ui-sortable-helper");
+				this.currentItem.css(this._storedCSS).removeClass("ui-oh-sortable-helper");
 			} else {
 				this.currentItem.show();
 			}
@@ -14477,7 +14477,7 @@
 			if(this.fromOutside && !noPropagation) {
 				delayedTriggers.push(function(event) { this._trigger("receive", event, this._uiHash(this.fromOutside)); });
 			}
-			if((this.fromOutside || this.domPosition.prev !== this.currentItem.prev().not(".ui-sortable-helper")[0] || this.domPosition.parent !== this.currentItem.parent()[0]) && !noPropagation) {
+			if((this.fromOutside || this.domPosition.prev !== this.currentItem.prev().not(".ui-oh-sortable-helper")[0] || this.domPosition.parent !== this.currentItem.parent()[0]) && !noPropagation) {
 				delayedTriggers.push(function(event) { this._trigger("update", event, this._uiHash()); }); //Trigger update callback if the DOM position has changed
 			}
 
@@ -14610,8 +14610,8 @@
 		options: {
 			culture: null,
 			icons: {
-				down: "ui-icon-triangle-1-s",
-				up: "ui-icon-triangle-1-n"
+				down: "ui-oh-icon-triangle-1-s",
+				up: "ui-oh-icon-triangle-1-n"
 			},
 			incremental: true,
 			max: null,
@@ -14706,7 +14706,7 @@
 				}, 100 );
 				event.preventDefault();
 			},
-			"mousedown .ui-spinner-button": function( event ) {
+			"mousedown .ui-oh-spinner-button": function( event ) {
 				var previous;
 
 				// We never want the buttons to have focus; whenever the user is
@@ -14748,29 +14748,29 @@
 					return;
 				}
 
-				this._repeat( null, $( event.currentTarget ).hasClass( "ui-spinner-up" ) ? 1 : -1, event );
+				this._repeat( null, $( event.currentTarget ).hasClass( "ui-oh-spinner-up" ) ? 1 : -1, event );
 			},
-			"mouseup .ui-spinner-button": "_stop",
-			"mouseenter .ui-spinner-button": function( event ) {
-				// button will add ui-state-active if mouse was down while mouseleave and kept down
-				if ( !$( event.currentTarget ).hasClass( "ui-state-active" ) ) {
+			"mouseup .ui-oh-spinner-button": "_stop",
+			"mouseenter .ui-oh-spinner-button": function( event ) {
+				// button will add ui-oh-state-active if mouse was down while mouseleave and kept down
+				if ( !$( event.currentTarget ).hasClass( "ui-oh-state-active" ) ) {
 					return;
 				}
 
 				if ( this._start( event ) === false ) {
 					return false;
 				}
-				this._repeat( null, $( event.currentTarget ).hasClass( "ui-spinner-up" ) ? 1 : -1, event );
+				this._repeat( null, $( event.currentTarget ).hasClass( "ui-oh-spinner-up" ) ? 1 : -1, event );
 			},
 			// TODO: do we really want to consider this a stop?
 			// shouldn't we just stop the repeater and wait until mouseup before
 			// we trigger the stop event?
-			"mouseleave .ui-spinner-button": "_stop"
+			"mouseleave .ui-oh-spinner-button": "_stop"
 		},
 
 		_draw: function() {
 			var uiSpinner = this.uiSpinner = this.element
-				.addClass( "ui-spinner-input" )
+				.addClass( "ui-oh-spinner-input" )
 				.attr( "autocomplete", "off" )
 				.wrap( this._uiSpinnerHtml() )
 				.parent()
@@ -14780,10 +14780,10 @@
 			this.element.attr( "role", "spinbutton" );
 
 			// button bindings
-			this.buttons = uiSpinner.find( ".ui-spinner-button" )
+			this.buttons = uiSpinner.find( ".ui-oh-spinner-button" )
 				.attr( "tabIndex", -1 )
 				.button()
-				.removeClass( "ui-corner-all" );
+				.removeClass( "ui-oh-corner-all" );
 
 			// IE 6 doesn't understand height: 50% for the buttons
 			// unless the wrapper has an explicit height
@@ -14821,16 +14821,16 @@
 		},
 
 		_uiSpinnerHtml: function() {
-			return "<span class='ui-spinner ui-widget ui-widget-content ui-corner-all'></span>";
+			return "<span class='ui-oh-spinner ui-oh-widget ui-oh-widget-content ui-oh-corner-all'></span>";
 		},
 
 		_buttonHtml: function() {
 			return "" +
-				"<a class='ui-spinner-button ui-spinner-up ui-corner-tr'>" +
-				"<span class='ui-icon " + this.options.icons.up + "'>&#9650;</span>" +
+				"<a class='ui-oh-spinner-button ui-oh-spinner-up ui-oh-corner-tr'>" +
+				"<span class='ui-oh-icon " + this.options.icons.up + "'>&#9650;</span>" +
 				"</a>" +
-				"<a class='ui-spinner-button ui-spinner-down ui-corner-br'>" +
-				"<span class='ui-icon " + this.options.icons.down + "'>&#9660;</span>" +
+				"<a class='ui-oh-spinner-button ui-oh-spinner-down ui-oh-corner-br'>" +
+				"<span class='ui-oh-icon " + this.options.icons.down + "'>&#9660;</span>" +
 				"</a>";
 		},
 
@@ -14951,10 +14951,10 @@
 				}
 			}
 			if ( key === "icons" ) {
-				this.buttons.first().find( ".ui-icon" )
+				this.buttons.first().find( ".ui-oh-icon" )
 					.removeClass( this.options.icons.up )
 					.addClass( value.up );
-				this.buttons.last().find( ".ui-icon" )
+				this.buttons.last().find( ".ui-oh-icon" )
 					.removeClass( this.options.icons.down )
 					.addClass( value.down );
 			}
@@ -14962,7 +14962,7 @@
 			this._super( key, value );
 
 			if ( key === "disabled" ) {
-				this.widget().toggleClass( "ui-state-disabled", !!value );
+				this.widget().toggleClass( "ui-oh-state-disabled", !!value );
 				this.element.prop( "disabled", !!value );
 				this.buttons.button( value ? "disable" : "enable" );
 			}
@@ -15028,7 +15028,7 @@
 
 		_destroy: function() {
 			this.element
-				.removeClass( "ui-spinner-input" )
+				.removeClass( "ui-oh-spinner-input" )
 				.prop( "disabled", false )
 				.removeAttr( "autocomplete" )
 				.removeAttr( "role" )
@@ -15141,8 +15141,8 @@
 			this.running = false;
 
 			this.element
-				.addClass( "ui-tabs ui-widget ui-widget-content ui-corner-all" )
-				.toggleClass( "ui-tabs-collapsible", options.collapsible );
+				.addClass( "ui-oh-tabs ui-oh-widget ui-oh-widget-content ui-oh-corner-all" )
+				.toggleClass( "ui-oh-tabs-collapsible", options.collapsible );
 
 			this._processTabs();
 			options.active = this._initialActive();
@@ -15151,7 +15151,7 @@
 			// into account and update option properly.
 			if ( $.isArray( options.disabled ) ) {
 				options.disabled = $.unique( options.disabled.concat(
-					$.map( this.tabs.filter( ".ui-state-disabled" ), function( li ) {
+					$.map( this.tabs.filter( ".ui-oh-state-disabled" ), function( li ) {
 						return that.tabs.index( li );
 					})
 				) ).sort();
@@ -15189,7 +15189,7 @@
 
 				// check for a tab marked active via a class
 				if ( active === null ) {
-					active = this.tabs.index( this.tabs.filter( ".ui-tabs-active" ) );
+					active = this.tabs.index( this.tabs.filter( ".ui-oh-tabs-active" ) );
 				}
 
 				// no active tab, set to false
@@ -15348,7 +15348,7 @@
 			this._super( key, value);
 
 			if ( key === "collapsible" ) {
-				this.element.toggleClass( "ui-tabs-collapsible", value );
+				this.element.toggleClass( "ui-oh-tabs-collapsible", value );
 				// Setting collapsible: false while collapsed; open first panel
 				if ( !value && this.options.active === false ) {
 					this._activate( 0 );
@@ -15374,7 +15374,7 @@
 
 			// get disabled tabs from class attribute from HTML
 			// this will get converted to a boolean if needed in _refresh()
-			options.disabled = $.map( lis.filter( ".ui-state-disabled" ), function( tab ) {
+			options.disabled = $.map( lis.filter( ".ui-oh-state-disabled" ), function( tab ) {
 				return lis.index( tab );
 			});
 
@@ -15424,7 +15424,7 @@
 				this.tabs.eq( 0 ).attr( "tabIndex", 0 );
 			} else {
 				this.active
-					.addClass( "ui-tabs-active ui-state-active" )
+					.addClass( "ui-oh-tabs-active ui-oh-state-active" )
 					.attr({
 						"aria-selected": "true",
 						"aria-expanded": "true",
@@ -15442,12 +15442,12 @@
 			var that = this;
 
 			this.tablist = this._getList()
-				.addClass( "ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" )
+				.addClass( "ui-oh-tabs-nav ui-oh-helper-reset ui-oh-helper-clearfix ui-oh-widget-header ui-oh-corner-all" )
 				.attr( "role", "tablist" )
 
 				// Prevent users from focusing disabled tabs via click
 				.delegate( "> li", "mousedown" + this.eventNamespace, function( event ) {
-					if ( $( this ).is( ".ui-state-disabled" ) ) {
+					if ( $( this ).is( ".ui-oh-state-disabled" ) ) {
 						event.preventDefault();
 					}
 				})
@@ -15458,14 +15458,14 @@
 				// We don't have to worry about focusing the previously focused
 				// element since clicking on a non-focusable element should focus
 				// the body anyway.
-				.delegate( ".ui-tabs-anchor", "focus" + this.eventNamespace, function() {
-					if ( $( this ).closest( "li" ).is( ".ui-state-disabled" ) ) {
+				.delegate( ".ui-oh-tabs-anchor", "focus" + this.eventNamespace, function() {
+					if ( $( this ).closest( "li" ).is( ".ui-oh-state-disabled" ) ) {
 						this.blur();
 					}
 				});
 
 			this.tabs = this.tablist.find( "> li:has(a[href])" )
-				.addClass( "ui-state-default ui-corner-top" )
+				.addClass( "ui-oh-state-default ui-oh-corner-top" )
 				.attr({
 					role: "tab",
 					tabIndex: -1
@@ -15474,7 +15474,7 @@
 			this.anchors = this.tabs.map(function() {
 				return $( "a", this )[ 0 ];
 			})
-				.addClass( "ui-tabs-anchor" )
+				.addClass( "ui-oh-tabs-anchor" )
 				.attr({
 					role: "presentation",
 					tabIndex: -1
@@ -15511,7 +15511,7 @@
 					that.panels = that.panels.add( panel );
 				}
 				if ( originalAriaControls ) {
-					tab.data( "ui-tabs-aria-controls", originalAriaControls );
+					tab.data( "ui-oh-tabs-aria-controls", originalAriaControls );
 				}
 				tab.attr({
 					"aria-controls": panelId,
@@ -15521,7 +15521,7 @@
 			});
 
 			this.panels
-				.addClass( "ui-tabs-panel ui-widget-content ui-corner-bottom" )
+				.addClass( "ui-oh-tabs-panel ui-oh-widget-content ui-oh-corner-bottom" )
 				.attr( "role", "tabpanel" );
 		},
 
@@ -15533,8 +15533,8 @@
 		_createPanel: function( id ) {
 			return $( "<div>" )
 				.attr( "id", id )
-				.addClass( "ui-tabs-panel ui-widget-content ui-corner-bottom" )
-				.data( "ui-tabs-destroy", true );
+				.addClass( "ui-oh-tabs-panel ui-oh-widget-content ui-oh-corner-bottom" )
+				.data( "ui-oh-tabs-destroy", true );
 		},
 
 		_setupDisabled: function( disabled ) {
@@ -15550,11 +15550,11 @@
 			for ( var i = 0, li; ( li = this.tabs[ i ] ); i++ ) {
 				if ( disabled === true || $.inArray( i, disabled ) !== -1 ) {
 					$( li )
-						.addClass( "ui-state-disabled" )
+						.addClass( "ui-oh-state-disabled" )
 						.attr( "aria-disabled", "true" );
 				} else {
 					$( li )
-						.removeClass( "ui-state-disabled" )
+						.removeClass( "ui-oh-state-disabled" )
 						.removeAttr( "aria-disabled" );
 				}
 			}
@@ -15638,9 +15638,9 @@
 
 			event.preventDefault();
 
-			if ( tab.hasClass( "ui-state-disabled" ) ||
+			if ( tab.hasClass( "ui-oh-state-disabled" ) ||
 				// tab is already loading
-				tab.hasClass( "ui-tabs-loading" ) ||
+				tab.hasClass( "ui-oh-tabs-loading" ) ||
 				// can't switch durning an animation
 				this.running ||
 				// click on active header, but not collapsible
@@ -15681,7 +15681,7 @@
 			}
 
 			function show() {
-				eventData.newTab.closest( "li" ).addClass( "ui-tabs-active ui-state-active" );
+				eventData.newTab.closest( "li" ).addClass( "ui-oh-tabs-active ui-oh-state-active" );
 
 				if ( toShow.length && that.options.show ) {
 					that._show( toShow, that.options.show, complete );
@@ -15694,11 +15694,11 @@
 			// start out by hiding, then showing, then completing
 			if ( toHide.length && this.options.hide ) {
 				this._hide( toHide, this.options.hide, function() {
-					eventData.oldTab.closest( "li" ).removeClass( "ui-tabs-active ui-state-active" );
+					eventData.oldTab.closest( "li" ).removeClass( "ui-oh-tabs-active ui-oh-state-active" );
 					show();
 				});
 			} else {
-				eventData.oldTab.closest( "li" ).removeClass( "ui-tabs-active ui-state-active" );
+				eventData.oldTab.closest( "li" ).removeClass( "ui-oh-tabs-active ui-oh-state-active" );
 				toHide.hide();
 				show();
 			}
@@ -15742,7 +15742,7 @@
 				active = this.active;
 			}
 
-			anchor = active.find( ".ui-tabs-anchor" )[ 0 ];
+			anchor = active.find( ".ui-oh-tabs-anchor" )[ 0 ];
 			this._eventHandler({
 				target: anchor,
 				currentTarget: anchor,
@@ -15768,14 +15768,14 @@
 				this.xhr.abort();
 			}
 
-			this.element.removeClass( "ui-tabs ui-widget ui-widget-content ui-corner-all ui-tabs-collapsible" );
+			this.element.removeClass( "ui-oh-tabs ui-oh-widget ui-oh-widget-content ui-oh-corner-all ui-oh-tabs-collapsible" );
 
 			this.tablist
-				.removeClass( "ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" )
+				.removeClass( "ui-oh-tabs-nav ui-oh-helper-reset ui-oh-helper-clearfix ui-oh-widget-header ui-oh-corner-all" )
 				.removeAttr( "role" );
 
 			this.anchors
-				.removeClass( "ui-tabs-anchor" )
+				.removeClass( "ui-oh-tabs-anchor" )
 				.removeAttr( "role" )
 				.removeAttr( "tabIndex" )
 				.removeUniqueId();
@@ -15783,12 +15783,12 @@
 			this.tablist.unbind( this.eventNamespace );
 
 			this.tabs.add( this.panels ).each(function() {
-				if ( $.data( this, "ui-tabs-destroy" ) ) {
+				if ( $.data( this, "ui-oh-tabs-destroy" ) ) {
 					$( this ).remove();
 				} else {
 					$( this )
-						.removeClass( "ui-state-default ui-state-active ui-state-disabled " +
-							"ui-corner-top ui-corner-bottom ui-widget-content ui-tabs-active ui-tabs-panel" )
+						.removeClass( "ui-oh-state-default ui-oh-state-active ui-oh-state-disabled " +
+							"ui-oh-corner-top ui-oh-corner-bottom ui-oh-widget-content ui-oh-tabs-active ui-oh-tabs-panel" )
 						.removeAttr( "tabIndex" )
 						.removeAttr( "aria-live" )
 						.removeAttr( "aria-busy" )
@@ -15802,11 +15802,11 @@
 
 			this.tabs.each(function() {
 				var li = $( this ),
-					prev = li.data( "ui-tabs-aria-controls" );
+					prev = li.data( "ui-oh-tabs-aria-controls" );
 				if ( prev ) {
 					li
 						.attr( "aria-controls", prev )
-						.removeData( "ui-tabs-aria-controls" );
+						.removeData( "ui-oh-tabs-aria-controls" );
 				} else {
 					li.removeAttr( "aria-controls" );
 				}
@@ -15868,7 +15868,7 @@
 			index = this._getIndex( index );
 			var that = this,
 				tab = this.tabs.eq( index ),
-				anchor = tab.find( ".ui-tabs-anchor" ),
+				anchor = tab.find( ".ui-oh-tabs-anchor" ),
 				panel = this._getPanelForTab( tab ),
 				eventData = {
 					tab: tab,
@@ -15886,7 +15886,7 @@
 			// jQuery <1.8 returns false if the request is canceled in beforeSend,
 			// but as of 1.8, $.ajax() always returns a jqXHR object.
 			if ( this.xhr && this.xhr.statusText !== "canceled" ) {
-				tab.addClass( "ui-tabs-loading" );
+				tab.addClass( "ui-oh-tabs-loading" );
 				panel.attr( "aria-busy", "true" );
 
 				this.xhr
@@ -15906,7 +15906,7 @@
 								that.panels.stop( false, true );
 							}
 
-							tab.removeClass( "ui-tabs-loading" );
+							tab.removeClass( "ui-oh-tabs-loading" );
 							panel.removeAttr( "aria-busy" );
 
 							if ( jqXHR === that.xhr ) {
@@ -15978,12 +15978,12 @@
 			var describedby = (elem.attr( "aria-describedby" ) || "").split( /\s+/ );
 			describedby.push( id );
 			elem
-				.data( "ui-tooltip-id", id )
+				.data( "ui-oh-tooltip-id", id )
 				.attr( "aria-describedby", $.trim( describedby.join( " " ) ) );
 		},
 
 		_removeDescribedBy: function( elem ) {
-			var id = elem.data( "ui-tooltip-id" ),
+			var id = elem.data( "ui-oh-tooltip-id" ),
 				describedby = (elem.attr( "aria-describedby" ) || "").split( /\s+/ ),
 				index = $.inArray( id, describedby );
 
@@ -15991,7 +15991,7 @@
 				describedby.splice( index, 1 );
 			}
 
-			elem.removeData( "ui-tooltip-id" );
+			elem.removeData( "ui-oh-tooltip-id" );
 			describedby = $.trim( describedby.join( " " ) );
 			if ( describedby ) {
 				elem.attr( "aria-describedby", describedby );
@@ -16022,7 +16022,7 @@
 					"aria-live": "assertive",
 					"aria-relevant": "additions"
 				})
-				.addClass( "ui-helper-hidden-accessible" )
+				.addClass( "ui-oh-helper-hidden-accessible" )
 				.appendTo( this.document[ 0 ].body );
 		},
 
@@ -16060,7 +16060,7 @@
 				var element = $( this );
 				if ( element.is( "[title]" ) ) {
 					element
-						.data( "ui-tooltip-title", element.attr( "title" ) )
+						.data( "ui-oh-tooltip-title", element.attr( "title" ) )
 						.removeAttr( "title" );
 				}
 			});
@@ -16070,8 +16070,8 @@
 			// restore title attributes
 			this.element.find( this.options.items ).addBack().each(function() {
 				var element = $( this );
-				if ( element.data( "ui-tooltip-title" ) ) {
-					element.attr( "title", element.data( "ui-tooltip-title" ) );
+				if ( element.data( "ui-oh-tooltip-title" ) ) {
+					element.attr( "title", element.data( "ui-oh-tooltip-title" ) );
 				}
 			});
 		},
@@ -16084,22 +16084,22 @@
 					.closest( this.options.items );
 
 			// No element to show a tooltip for or the tooltip is already open
-			if ( !target.length || target.data( "ui-tooltip-id" ) ) {
+			if ( !target.length || target.data( "ui-oh-tooltip-id" ) ) {
 				return;
 			}
 
 			if ( target.attr( "title" ) ) {
-				target.data( "ui-tooltip-title", target.attr( "title" ) );
+				target.data( "ui-oh-tooltip-title", target.attr( "title" ) );
 			}
 
-			target.data( "ui-tooltip-open", true );
+			target.data( "ui-oh-tooltip-open", true );
 
 			// kill parent tooltips, custom or native, for hover
 			if ( event && event.type === "mouseover" ) {
 				target.parents().each(function() {
 					var parent = $( this ),
 						blurEvent;
-					if ( parent.data( "ui-tooltip-open" ) ) {
+					if ( parent.data( "ui-oh-tooltip-open" ) ) {
 						blurEvent = $.Event( "blur" );
 						blurEvent.target = blurEvent.currentTarget = this;
 						that.close( blurEvent, true );
@@ -16130,7 +16130,7 @@
 
 			content = contentOption.call( target[0], function( response ) {
 				// ignore async response if tooltip was closed already
-				if ( !target.data( "ui-tooltip-open" ) ) {
+				if ( !target.data( "ui-oh-tooltip-open" ) ) {
 					return;
 				}
 				// IE may instantly serve a cached response for ajax requests
@@ -16164,7 +16164,7 @@
 			// exists, then just update the content and bail.
 			tooltip = this._find( target );
 			if ( tooltip.length ) {
-				tooltip.find( ".ui-tooltip-content" ).html( content );
+				tooltip.find( ".ui-oh-tooltip-content" ).html( content );
 				return;
 			}
 
@@ -16185,7 +16185,7 @@
 
 			tooltip = this._tooltip( target );
 			this._addDescribedBy( target, tooltip.attr( "id" ) );
-			tooltip.find( ".ui-tooltip-content" ).html( content );
+			tooltip.find( ".ui-oh-tooltip-content" ).html( content );
 
 			// Support: Voiceover on OS X, JAWS on IE <= 9
 			// JAWS announces deletions even when aria-relevant="additions"
@@ -16280,8 +16280,8 @@
 
 			// only set title if we had one before (see comment in _open())
 			// If the title attribute has changed since open(), don't restore
-			if ( target.data( "ui-tooltip-title" ) && !target.attr( "title" ) ) {
-				target.attr( "title", target.data( "ui-tooltip-title" ) );
+			if ( target.data( "ui-oh-tooltip-title" ) && !target.attr( "title" ) ) {
+				target.attr( "title", target.data( "ui-oh-tooltip-title" ) );
 			}
 
 			this._removeDescribedBy( target );
@@ -16294,7 +16294,7 @@
 				this.closing = false;
 			});
 
-			target.removeData( "ui-tooltip-open" );
+			target.removeData( "ui-oh-tooltip-open" );
 			this._off( target, "mouseleave focusout keyup" );
 
 			// Remove 'remove' binding only on delegated targets
@@ -16320,12 +16320,12 @@
 		_tooltip: function( element ) {
 			var tooltip = $( "<div>" )
 					.attr( "role", "tooltip" )
-					.addClass( "ui-tooltip ui-widget ui-corner-all ui-widget-content " +
+					.addClass( "ui-oh-tooltip ui-oh-widget ui-oh-corner-all ui-oh-widget-content " +
 						( this.options.tooltipClass || "" ) ),
 				id = tooltip.uniqueId().attr( "id" );
 
 			$( "<div>" )
-				.addClass( "ui-tooltip-content" )
+				.addClass( "ui-oh-tooltip-content" )
 				.appendTo( tooltip );
 
 			tooltip.appendTo( this.document[0].body );
@@ -16334,7 +16334,7 @@
 		},
 
 		_find: function( target ) {
-			var id = target.data( "ui-tooltip-id" );
+			var id = target.data( "ui-oh-tooltip-id" );
 			return id ? $( "#" + id ) : $();
 		},
 
@@ -16358,12 +16358,12 @@
 				$( "#" + id ).remove();
 
 				// Restore the title
-				if ( element.data( "ui-tooltip-title" ) ) {
+				if ( element.data( "ui-oh-tooltip-title" ) ) {
 					// If the title attribute has changed since open(), don't restore
 					if ( !element.attr( "title" ) ) {
-						element.attr( "title", element.data( "ui-tooltip-title" ) );
+						element.attr( "title", element.data( "ui-oh-tooltip-title" ) );
 					}
-					element.removeData( "ui-tooltip-title" );
+					element.removeData( "ui-oh-tooltip-title" );
 				}
 			});
 			this.liveRegion.remove();

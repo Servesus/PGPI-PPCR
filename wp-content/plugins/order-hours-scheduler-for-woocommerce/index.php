@@ -3,10 +3,10 @@
  * Plugin Name: Order Hours Scheduler for WooCommerce
  * Plugin URI: http://www.bizswoop.com/wp/orderhours
  * Description: Create Custom Schedules to Automatically Enable & Disable WooCommerce Customer Checkout Functionality 
- * Version: 2.0.10
+ * Version: 2.0.11
  * Text Domain: order-hours-scheduler-woocommerce
  * WC requires at least: 2.4.0
- * WC tested up to: 3.7.0
+ * WC tested up to: 3.8.0
  * Author: BizSwoop a CPF Concepts, LLC Brand
  * Author URI: http://www.bizswoop.com
  */

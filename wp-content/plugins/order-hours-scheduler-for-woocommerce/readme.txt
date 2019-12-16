@@ -1,11 +1,11 @@
-=== Order Hours Scheduler for WooCommerce ===	
+﻿=== Order Hours Scheduler for WooCommerce ===	
 	
 Contributors: bizswoop
 Tags: woocommerce, woocommerce open close, opening-closing-time, opening-time, closing-time, wordpress, web-shop-management, restrict-add-to-cart, wordpress-plugin, woo-open-close, order hours, woo order hours, wooorders, order schedule, block ordering, block woocommerce ordering, schedule ordering, maintain scheduling in woocommerce, maintain scheduling in website, maintain scheduling in webshop, opening, closing, opening shop, opening website, opening woocommerce, closing shop, closing website, closing woocommerce, business hour, business time, pick-up, pickup, pick-up delivery, pickup delivery, order pickup, order pick-up, order pickup delivery, order pick-up devlivery
 Requires at least: 3.0
 Requires PHP: 5.6
-Tested up to: 5.2.2
-Stable tag: 2.0.10
+Tested up to: 5.3.0
+Stable tag: 2.0.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,10 +55,15 @@ Are you a restaurant or business only open for select hours? Do you need a simpl
 
 == Changelog ==
 
+	= 2.0.11 =
+	* Hot fix for CSS conflicts
+	* WC tested up to 3.8
+	* WordPress tested up to 5.3
+	
 	= 2.0.10 =
 	* Update - WC tested up to 3.7
-
-        = 2.0.9 =
+	
+	= 2.0.9 =
 	* Add quickview support for popular Flatsome theme
 	
 	= 2.0.8 =
